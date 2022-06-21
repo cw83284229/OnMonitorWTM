@@ -1,0 +1,180 @@
+﻿@page "/Project/ProjectChangeCamera"
+@using OnMonitor.ViewModel.Project.ProjectChangeCameraVMs;
+@inherits BasePage
+@attribute [ActionDescription("工程监控", "OnMonitor.Controllers,ProjectChangeCamera")]
+
+<WTSearchPanel OnSearch="@DoSearch">
+    <ValidateForm Model="@SearchModel">
+        <Row ItemsPerRow="ItemsPerRow.Three" RowType="RowType.Inline">
+
+            <Select @bind-Value="@SearchModel.ProjectManagesId" ShowSearch=true Items="@AllProjectManagess" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <Select @bind-Value="@SearchModel.CameraId"  ShowSearch=true Items="@AllCameras" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <Select @bind-Value="@SearchModel.TransformationStatus"  PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <Select @bind-Value="@SearchModel.IsDismantle" Items="@WtmBlazor.GlobalSelectItems.SearcherBoolItems" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+        </Row>
+    </ValidateForm>
+</WTSearchPanel>
+
+
+
+<Table @ref="dataTable" TItem="ProjectChangeCamera_View" OnQueryAsync="OnSearch" IsPagination="true" IsStriped="true" IsBordered="true" ShowRefresh="false"
+       ShowToolbar="true" IsMultipleSelect="true" ShowExtendButtons="true" ShowDefaultButtons="false" style="margin-top:10px;">
+    <TableColumns>
+
+        <TableColumn @bind-Field="@context.ProjectName"  />
+        <TableColumn @bind-Field="@context.Camera_ID_view"  />
+        <TableColumn @bind-Field="@context.ChangeLocation"  />
+        <TableColumn @bind-Field="@context.TransformationStatus"  />
+        <TableColumn @bind-Field="@context.IsDismantle" ComponentType="@typeof(Switch)" />
+        <TableColumn @bind-Field="@context.Remark"  />
+    </TableColumns>
+    <TableToolbarTemplate>
+        @if (IsAccessable("/api/ProjectChangeCamera/Add"))
+        {
+            <TableToolbarButton TItem="ProjectChangeCamera_View" Color="Color.Primary" Icon="fa fa-fw fa-plus" Text="@WtmBlazor.Localizer["Sys.Create"]" OnClickCallback="OnCreateClick" />
+        }
+        @if (IsAccessable("/api/ProjectChangeCamera/BatchDelete"))
+        {
+            <TableToolbarPopconfirmButton TItem="ProjectChangeCamera_View" Color="Color.Primary"
+                                          Icon="fa fa-fw fa-trash-o" Text="@WtmBlazor.Localizer["Sys.BatchDelete"]"
+                                          OnConfirm="@OnBatchDeleteClick" Content="@WtmBlazor.Localizer["Sys.BatchDeleteConfirm"]" CloseButtonText="@WtmBlazor.Localizer["Sys.Close"]"
+                                          ConfirmButtonText="@WtmBlazor.Localizer["Sys.BatchDelete"]" ConfirmButtonColor="Color.Danger" />
+        }
+          @if (IsAccessable("/api/ProjectChangeCamera/Edit"))
+        {
+            <TableToolbarPopconfirmButton TItem="ProjectChangeCamera_View" Color="Color.Primary"
+                                          Icon="fa fa-fw fa-trash-o" Text="@WtmBlazor.Localizer["Sys.BatchEdit"]"
+                                          OnConfirm="@OnBatchEditClick" Content="@WtmBlazor.Localizer["Sys.BatchEditConfirm"]" CloseButtonText="@WtmBlazor.Localizer["Sys.Close"]"
+                                          ConfirmButtonText="@WtmBlazor.Localizer["Sys.BatchEdit"]" ConfirmButtonColor="Color.Danger" />
+        }
+        @if (IsAccessable("/api/ProjectChangeCamera/Import"))
+        {
+            <TableToolbarButton TItem="ProjectChangeCamera_View" Color="Color.Primary" Icon="fa fa-fw fa-upload" Text="@WtmBlazor.Localizer["Sys.Import"]" OnClickCallback="@OnImportClick" />
+        }
+        @if (IsAccessable("/api/ProjectChangeCamera/ExportExcel"))
+        {
+            <TableToolbarButton TItem="ProjectChangeCamera_View" Color="Color.Primary" Icon="fa fa-fw fa-download" Text="@WtmBlazor.Localizer["Sys.Export"]" OnClickCallback="@OnExportClick" IsAsync="true" />
+        }
+    </TableToolbarTemplate>
+    <RowButtonTemplate>
+        <div style="padding-right:10px;">
+            @if (IsAccessable("/api/ProjectChangeCamera/Edit"))
+            {
+                <TableCellButton Size="Size.ExtraSmall" Color="Color.Success" Icon="fa fa-edit" Text="@WtmBlazor.Localizer["Sys.Edit"]" OnClick="() => OnEditClick(context)" />
+            }
+            @if (IsAccessable("/api/ProjectChangeCamera/{id}"))
+            {
+                <TableCellButton Size="Size.ExtraSmall" Color="Color.Info" Icon="fa fa-info" Text="@WtmBlazor.Localizer["Sys.Details"]" OnClick="()=>OnDetailsClick(context)" />
+            }
+            @if (IsAccessable("/api/ProjectChangeCamera/BatchDelete"))
+            {
+                <PopConfirmButton Icon="fa fa-trash-o" Text="@WtmBlazor.Localizer["Sys.Delete"]" OnConfirm="() => OnDeleteClick(context)" Color="Color.Danger" Size="Size.ExtraSmall"
+                                  Content="@WtmBlazor.Localizer["Sys.DeleteConfirm"]" CloseButtonText="@WtmBlazor.Localizer["Sys.Close"]" ConfirmButtonText="@WtmBlazor.Localizer["Sys.Delete"]" ConfirmButtonColor="Color.Danger" />
+            }
+        </div>
+    </RowButtonTemplate>
+</Table>
+
+@code{
+
+    private ProjectChangeCameraSearcher SearchModel = new ProjectChangeCameraSearcher();
+    private Table<ProjectChangeCamera_View> dataTable;
+
+    private List<SelectedItem> AllProjectManagess = new List<SelectedItem>();
+
+    private List<SelectedItem> AllCameras = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllProjectManagess = await WtmBlazor.Api.CallItemsApi("/api/ProjectChangeCamera/GetProjectManagess", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        AllCameras = await WtmBlazor.Api.CallItemsApi("/api/ProjectChangeCamera/GetCameras", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task<QueryData<ProjectChangeCamera_View>> OnSearch(QueryPageOptions opts)
+    {
+        return await StartSearch<ProjectChangeCamera_View>("/api/ProjectChangeCamera/Search", SearchModel, opts);
+    }
+
+    private void DoSearch()
+    {
+        dataTable.QueryAsync();
+    }
+
+    private async Task OnCreateClick(IEnumerable<ProjectChangeCamera_View> items)
+    {
+        if (await OpenDialog<Create>(WtmBlazor.Localizer["Sys.Create"]) == DialogResult.Yes)
+        {
+            await dataTable.QueryAsync();
+        }
+    }
+
+    private async Task OnEditClick(ProjectChangeCamera_View item)
+    {
+        if (await OpenDialog<Edit>(WtmBlazor.Localizer["Sys.Edit"], x => x.id == item.ID.ToString()) == DialogResult.Yes)
+        {
+            await dataTable.QueryAsync();
+        }
+    }
+
+    private async Task OnDetailsClick(ProjectChangeCamera_View item)
+    {
+        await OpenDialog<Details>(WtmBlazor.Localizer["Sys.Details"], x => x.id == item.ID.ToString());
+    }
+
+    private async Task OnBatchDeleteClick()
+    {
+        if (dataTable.SelectedRows?.Any() == true)
+        {
+            await PostsData(dataTable.SelectedRows.Select(x => x.ID).ToList(), $"/api/ProjectChangeCamera/batchdelete", (s) => WtmBlazor.Localizer["Sys.BatchDeleteSuccess", s]);
+            await dataTable.QueryAsync();
+        }
+        else
+        {
+            await WtmBlazor.Toast.Information(WtmBlazor.Localizer["Sys.Info"], WtmBlazor.Localizer["Sys.SelectOneRowMin"]);
+        }
+    }
+     private async Task OnBatchEditClick()
+    {
+
+     
+        var dd=dataTable.SelectedRows.Select(x => x.ID).ToList();
+        
+        if (await OpenDialog<BatchEdit>(WtmBlazor.Localizer["Sys.Edit"],u=>u.id== dataTable.SelectedRows.Select(x => x.ID).ToList()) == DialogResult.Yes)
+        {
+
+            await dataTable.QueryAsync();
+
+        }
+    }
+    private async Task OnDeleteClick(ProjectChangeCamera_View item)
+    {
+        await PostsData(new List<string> { item.ID.ToString() }, $"/api/ProjectChangeCamera/batchdelete", (s) => "Sys.OprationSuccess");
+        await dataTable.QueryAsync();
+    }
+
+
+    private async Task OnExportClick(IEnumerable<ProjectChangeCamera_View> items)
+    {
+        if (dataTable.SelectedRows?.Any() == true)
+        {
+            await Download("/api/ProjectChangeCamera/ExportExcelByIds", dataTable.SelectedRows.Select(x => x.ID.ToString()).ToList());
+        }
+        else
+        {
+            await Download("/api/ProjectChangeCamera/ExportExcel", SearchModel);
+        }
+    }
+    private async Task OnImportClick(IEnumerable<ProjectChangeCamera_View> items)
+    {
+        if (await OpenDialog<Import>(WtmBlazor.Localizer["Sys.Import"]) == DialogResult.Yes)
+        {
+            await dataTable.QueryAsync();
+        }
+    }
+
+}

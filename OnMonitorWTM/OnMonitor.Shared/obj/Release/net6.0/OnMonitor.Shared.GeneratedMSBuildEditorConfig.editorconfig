@@ -1,0 +1,456 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = OnMonitor.Shared
+build_property.RootNamespace = OnMonitor.Shared
+build_property.ProjectDir = F:\GitCode\OnMonitorWTM\OnMonitor.Shared\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = F:\GitCode\OnMonitorWTM\OnMonitor.Shared
+build_property._RazorSourceGeneratorDebug = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/App.razor]
+build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/AlarmManage/AlarmManage/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxhcm1NYW5hZ2VcQWxhcm1NYW5hZ2VcQ3JlYXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/AlarmManage/AlarmManage/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxhcm1NYW5hZ2VcQWxhcm1NYW5hZ2VcRGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/AlarmManage/AlarmManage/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxhcm1NYW5hZ2VcQWxhcm1NYW5hZ2VcRWRpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/AlarmManage/AlarmManage/Import.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxhcm1NYW5hZ2VcQWxhcm1NYW5hZ2VcSW1wb3J0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/AlarmManage/AlarmManage/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQWxhcm1NYW5hZ2VcQWxhcm1NYW5hZ2VcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/DVRInfo/DVRVerification.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRFZSSW5mb1xEVlJWZXJpZmljYXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/DVRInfo/VideoDownload.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRFZSSW5mb1xWaWRlb0Rvd25sb2FkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/DVROperation/CameraPicture.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRFZST3BlcmF0aW9uXENhbWVyYVBpY3R1cmUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/DVROperation/DVRInfo.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRFZST3BlcmF0aW9uXERWUkluZm8ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/AlarmHost/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XEFsYXJtSG9zdFxDcmVhdGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/AlarmHost/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XEFsYXJtSG9zdFxEZXRhaWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/AlarmHost/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XEFsYXJtSG9zdFxFZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/AlarmHost/Import.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XEFsYXJtSG9zdFxJbXBvcnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/AlarmHost/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XEFsYXJtSG9zdFxJbmRleC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/Alarm/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XEFsYXJtXENyZWF0ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/Alarm/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XEFsYXJtXERldGFpbHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/Alarm/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XEFsYXJtXEVkaXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/Alarm/Import.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XEFsYXJtXEltcG9ydC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/Alarm/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XEFsYXJtXEluZGV4LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/Camera/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XENhbWVyYVxDcmVhdGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/Camera/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XENhbWVyYVxEZXRhaWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/Camera/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XENhbWVyYVxFZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/Camera/Import.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XENhbWVyYVxJbXBvcnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/Camera/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XENhbWVyYVxJbmRleC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/Department/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XERlcGFydG1lbnRcQ3JlYXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/Department/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XERlcGFydG1lbnRcRGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/Department/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XERlcGFydG1lbnRcRWRpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/Department/Import.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XERlcGFydG1lbnRcSW1wb3J0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/Department/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XERlcGFydG1lbnRcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/DVR/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XERWUlxDcmVhdGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/DVR/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XERWUlxEZXRhaWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/DVR/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XERWUlxFZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/DVR/Import.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XERWUlxJbXBvcnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/DVR/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XERWUlxJbmRleC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/MonitorRoom/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XE1vbml0b3JSb29tXENyZWF0ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/MonitorRoom/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XE1vbml0b3JSb29tXERldGFpbHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/MonitorRoom/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XE1vbml0b3JSb29tXEVkaXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/MonitorRoom/Import.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XE1vbml0b3JSb29tXEltcG9ydC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Equipment/MonitorRoom/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXF1aXBtZW50XE1vbml0b3JSb29tXEluZGV4LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Index_en.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXhfZW4ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Index_zh.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXhfemgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Project/CameraLayout/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdFxDYW1lcmFMYXlvdXRcQ3JlYXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Project/CameraLayout/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdFxDYW1lcmFMYXlvdXRcRGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Project/CameraLayout/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdFxDYW1lcmFMYXlvdXRcRWRpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Project/CameraLayout/Import.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdFxDYW1lcmFMYXlvdXRcSW1wb3J0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Project/CameraLayout/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdFxDYW1lcmFMYXlvdXRcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Project/ProjectChangeCamera/BatchEdit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdFxQcm9qZWN0Q2hhbmdlQ2FtZXJhXEJhdGNoRWRpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Project/ProjectChangeCamera/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdFxQcm9qZWN0Q2hhbmdlQ2FtZXJhXENyZWF0ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Project/ProjectChangeCamera/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdFxQcm9qZWN0Q2hhbmdlQ2FtZXJhXERldGFpbHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Project/ProjectChangeCamera/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdFxQcm9qZWN0Q2hhbmdlQ2FtZXJhXEVkaXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Project/ProjectChangeCamera/Import.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdFxQcm9qZWN0Q2hhbmdlQ2FtZXJhXEltcG9ydC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Project/ProjectChangeCamera/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdFxQcm9qZWN0Q2hhbmdlQ2FtZXJhXEluZGV4LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Project/ProjectManages/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdFxQcm9qZWN0TWFuYWdlc1xDcmVhdGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Project/ProjectManages/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdFxQcm9qZWN0TWFuYWdlc1xEZXRhaWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Project/ProjectManages/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdFxQcm9qZWN0TWFuYWdlc1xFZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Project/ProjectManages/Import.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdFxQcm9qZWN0TWFuYWdlc1xJbXBvcnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Project/ProjectManages/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJvamVjdFxQcm9qZWN0TWFuYWdlc1xJbmRleC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Repair/AlarmRepair/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwYWlyXEFsYXJtUmVwYWlyXENyZWF0ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Repair/AlarmRepair/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwYWlyXEFsYXJtUmVwYWlyXERldGFpbHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Repair/AlarmRepair/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwYWlyXEFsYXJtUmVwYWlyXEVkaXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Repair/AlarmRepair/Import.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwYWlyXEFsYXJtUmVwYWlyXEltcG9ydC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Repair/AlarmRepair/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwYWlyXEFsYXJtUmVwYWlyXEluZGV4LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Repair/CameraRepair/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwYWlyXENhbWVyYVJlcGFpclxDcmVhdGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Repair/CameraRepair/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwYWlyXENhbWVyYVJlcGFpclxEZXRhaWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Repair/CameraRepair/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwYWlyXENhbWVyYVJlcGFpclxFZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Repair/CameraRepair/Import.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwYWlyXENhbWVyYVJlcGFpclxJbXBvcnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Repair/CameraRepair/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwYWlyXENhbWVyYVJlcGFpclxJbmRleC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Repair/DVRInfoCheck/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwYWlyXERWUkluZm9DaGVja1xFZGl0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Repair/DVRInfoCheck/Import.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwYWlyXERWUkluZm9DaGVja1xJbXBvcnQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/Repair/DVRInfoCheck/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUmVwYWlyXERWUkluZm9DaGVja1xJbmRleC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/ActionLog/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEFjdGlvbkxvZ1xEZXRhaWxzLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/ActionLog/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEFjdGlvbkxvZ1xJbmRleC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/DataPrivilege/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXERhdGFQcml2aWxlZ2VcQ3JlYXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/DataPrivilege/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXERhdGFQcml2aWxlZ2VcRGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/DataPrivilege/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXERhdGFQcml2aWxlZ2VcRWRpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/DataPrivilege/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXERhdGFQcml2aWxlZ2VcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/FrameworkGroup/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEZyYW1ld29ya0dyb3VwXENyZWF0ZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/FrameworkGroup/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEZyYW1ld29ya0dyb3VwXERldGFpbHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/FrameworkGroup/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEZyYW1ld29ya0dyb3VwXEVkaXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/FrameworkGroup/Import.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEZyYW1ld29ya0dyb3VwXEltcG9ydC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/FrameworkGroup/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEZyYW1ld29ya0dyb3VwXEluZGV4LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/FrameworkMenu/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEZyYW1ld29ya01lbnVcQ3JlYXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/FrameworkMenu/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEZyYW1ld29ya01lbnVcRGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/FrameworkMenu/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEZyYW1ld29ya01lbnVcRWRpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/FrameworkMenu/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEZyYW1ld29ya01lbnVcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/FrameworkRole/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEZyYW1ld29ya1JvbGVcQ3JlYXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/FrameworkRole/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEZyYW1ld29ya1JvbGVcRGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/FrameworkRole/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEZyYW1ld29ya1JvbGVcRWRpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/FrameworkRole/Import.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEZyYW1ld29ya1JvbGVcSW1wb3J0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/FrameworkRole/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEZyYW1ld29ya1JvbGVcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/FrameworkRole/PageFunction.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEZyYW1ld29ya1JvbGVcUGFnZUZ1bmN0aW9uLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/FrameworkUser/Create.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEZyYW1ld29ya1VzZXJcQ3JlYXRlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/FrameworkUser/Details.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEZyYW1ld29ya1VzZXJcRGV0YWlscy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/FrameworkUser/Edit.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEZyYW1ld29ya1VzZXJcRWRpdC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/FrameworkUser/Import.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEZyYW1ld29ya1VzZXJcSW1wb3J0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/FrameworkUser/Index.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEZyYW1ld29ya1VzZXJcSW5kZXgucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Pages/_Admin/FrameworkUser/Password.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX0FkbWluXEZyYW1ld29ya1VzZXJcUGFzc3dvcmQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Shared/EmptyLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXEVtcHR5TGF5b3V0LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Shared/Outside.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE91dHNpZGUucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Shared/Password.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXFBhc3N3b3JkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/WtmBlazorUtils/WTDateRange.razor]
+build_metadata.AdditionalFiles.TargetPath = V3RtQmxhem9yVXRpbHNcV1REYXRlUmFuZ2UucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/WtmBlazorUtils/WTSearchPanel.razor]
+build_metadata.AdditionalFiles.TargetPath = V3RtQmxhem9yVXRpbHNcV1RTZWFyY2hQYW5lbC5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/WtmBlazorUtils/WTSimpleUpload.razor]
+build_metadata.AdditionalFiles.TargetPath = V3RtQmxhem9yVXRpbHNcV1RTaW1wbGVVcGxvYWQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/WtmBlazorUtils/WTUploadFile.razor]
+build_metadata.AdditionalFiles.TargetPath = V3RtQmxhem9yVXRpbHNcV1RVcGxvYWRGaWxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/WtmBlazorUtils/WTUploadImage.razor]
+build_metadata.AdditionalFiles.TargetPath = V3RtQmxhem9yVXRpbHNcV1RVcGxvYWRJbWFnZS5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/_Imports.razor]
+build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Shared/Login.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXExvZ2luLnJhem9y
+build_metadata.AdditionalFiles.CssScope = b-7mrux6ryqp
+
+[F:/GitCode/OnMonitorWTM/OnMonitor.Shared/Shared/MainLayout.razor]
+build_metadata.AdditionalFiles.TargetPath = U2hhcmVkXE1haW5MYXlvdXQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = b-i37xp1fnqa

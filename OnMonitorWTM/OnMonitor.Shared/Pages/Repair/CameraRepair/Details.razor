@@ -1,0 +1,55 @@
+﻿@page "/Repair/CameraRepair/Details/{id}"
+@using OnMonitor.ViewModel.Repair.CameraRepairVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" >
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.Normal">
+
+        <Select @bind-Value="@Model.Entity.CameraId" Items="@AllCameras" PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]" ShowLabel="true" />
+        <Display @bind-Value="@Model.Entity.AnomalyTime" ShowLabel="true" />
+        <Display @bind-Value="@Model.Entity.CollectTime" ShowLabel="true" />
+        <Display @bind-Value="@Model.Entity.AnomalyType" ShowLabel="true" />
+        <Display @bind-Value="@Model.Entity.AnomalyGrade" ShowLabel="true" />
+        <Display @bind-Value="@Model.Entity.Registrar" ShowLabel="true" />
+        <Display @bind-Value="@Model.Entity.RepairState" ShowLabel="true" />
+        <Display @bind-Value="@Model.Entity.RepairedTime" ShowLabel="true" />
+        <Display @bind-Value="@Model.Entity.Accendant" ShowLabel="true" />
+        <Display @bind-Value="@Model.Entity.RepairDetails" ShowLabel="true" />
+        <Display @bind-Value="@Model.Entity.RepairFirm" ShowLabel="true" />
+        <Display @bind-Value="@Model.Entity.Supervisor" ShowLabel="true" />
+        <Display @bind-Value="@Model.Entity.ReplacePart" ShowLabel="true" />
+        <Display @bind-Value="@Model.Entity.ProjectAnomaly" ShowLabel="true" />
+        <Switch @bind-Value="@Model.Entity.NoSignal" IsDisabled="true" ShowLabel="true" />
+        <Display @bind-Value="@Model.Entity.AnomalyIdentification" ShowLabel="true" />
+        <Display @bind-Value="@Model.Entity.Remark" ShowLabel="true" />
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private CameraRepairVM Model = new CameraRepairVM();
+    private ValidateForm vform { get; set; }
+    [Parameter]
+    public string id { get; set; }
+
+    private List<SelectedItem> AllCameras = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllCameras = await WtmBlazor.Api.CallItemsApi("/api/CameraRepair/GetCameras", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        var rv = await WtmBlazor.Api.CallAPI<CameraRepairVM>($"/api/CameraRepair/{id}");
+        Model = rv.Data;
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}

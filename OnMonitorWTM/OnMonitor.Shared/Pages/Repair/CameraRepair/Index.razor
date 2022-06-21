@@ -1,0 +1,140 @@
+﻿@page "/Repair/CameraRepair"
+@using OnMonitor.ViewModel.Repair.CameraRepairVMs;
+@inherits BasePage
+@attribute [ActionDescription("镜头维修", "OnMonitor.Controllers,CameraRepair")]
+<Row ItemsPerRow="ItemsPerRow.Twelve" RowType="RowType.Normal">
+
+    <div>总计：<Tag Color="Color.Danger">@queryData.TotalCount</Tag></div>
+    <div>错位：<Tag Color="Color.Primary" >@queryData.Items.Where(u => u.AnomalyType == Model.Repair.AnomalyType.Malposition).Count()</Tag></div>
+    <div>灰屏：<Tag Color="Color.Primary" >@queryData.Items.Where(u => u.AnomalyType == Model.Repair.AnomalyType.NoSignal).Count()</Tag></div>
+    <div>干扰：<Tag Color="Color.Primary" >@queryData.Items.Where(u => u.AnomalyType == Model.Repair.AnomalyType.Disturb).Count()</Tag></div>
+    <div>模糊：<Tag Color="Color.Primary" >@queryData.Items.Where(u => u.AnomalyType == Model.Repair.AnomalyType.Dim).Count()</Tag></div>
+    <div>1级：<Tag Color="Color.Warning">@queryData.Items.Where(u => u.AnomalyGrade == Model.Repair.AnomalyGrade.One).Count()</Tag></div>
+    <div>2级：<Tag Color="Color.Warning">@queryData.Items.Where(u => u.AnomalyGrade == Model.Repair.AnomalyGrade.Two).Count()</Tag></div>
+    <div>3级：<Tag Color="Color.Warning">@queryData.Items.Where(u => u.AnomalyGrade == Model.Repair.AnomalyGrade.Three).Count()</Tag></div>
+    <div>延后处理：</div>
+    <div><Tag Color="Color.Dark" Icon="fa fa-fw fa-question-circle" >4级：@fourclass</Tag></div>
+    <div><Tag Color="Color.Dark" Icon="fa fa-fw fa-question-circle" >5级：@fourclass2</Tag></div>
+   
+</Row>
+
+
+<Table @ref="dataTable" TItem="CameraRepair_View" ShowSearch="true" ShowEmpty="true" OnQueryAsync="OnSearch" IsPagination="true" IsStriped="true" IsBordered="true" ShowRefresh="true" DoubleClickToEdit="true " OnSaveAsync="@OnEditDoubleClick"
+       ShowToolbar="true" IsMultipleSelect="true" ShowExtendButtons="true" ShowDefaultButtons="false" show style="margin-top:10px;">
+
+
+
+    <TableColumns>
+
+        <TableColumn @bind-Field="@context.Monitor_Room" />
+        <TableColumn @bind-Field="@context.Build" Searchable="true" />
+        <TableColumn @bind-Field="@context.Floor" Searchable="true" />
+        <TableColumn @bind-Field="@context.Location" Searchable="true" />
+        <TableColumn @bind-Field="@context.DVR_ID" />
+        <TableColumn @bind-Field="@context.Camera_ID_view" Searchable="true" />
+        <TableColumn @bind-Field="@context.DepartmentName" />
+        <TableColumn @bind-Field="@context.CollectTime" />
+        <TableColumn @bind-Field="@context.AnomalyType" />
+        <TableColumn @bind-Field="@context.AnomalyGrade" />
+        <TableColumn @bind-Field="@context.Registrar" />
+        <TableColumn @bind-Field="@context.RepairState" />
+        <TableColumn @bind-Field="@context.RepairedTime" />
+        <TableColumn @bind-Field="@context.Accendant" />
+        <TableColumn @bind-Field="@context.RepairDetails" />
+        <TableColumn @bind-Field="@context.RepairFirm" />
+        <TableColumn @bind-Field="@context.Supervisor" />
+        <TableColumn @bind-Field="@context.ReplacePart" />
+        <TableColumn @bind-Field="@context.ProjectAnomaly" />
+        <TableColumn @bind-Field="@context.AnomalyIdentification" />
+        <TableColumn @bind-Field="@context.Remark" />
+    </TableColumns>
+    <TableToolbarTemplate>
+        @if (IsAccessable("/api/CameraRepair/add"))
+        {
+            <TableToolbarButton TItem="CameraRepair_View" Color="Color.Primary" Icon="fa fa-fw fa-plus" Text="新增异常" OnClickCallback="OnCreateClick" />
+        }
+        @if (IsAccessable("/api/CameraRepair/BatchDelete"))
+        {
+            <TableToolbarPopconfirmButton TItem="CameraRepair_View" Color="Color.Primary"
+                                          Icon="fa fa-fw fa-trash-o" Text="@WtmBlazor.Localizer["Sys.BatchDelete"]"
+                                          OnConfirm="@OnBatchDeleteClick" Content="@WtmBlazor.Localizer["Sys.BatchDeleteConfirm"]" CloseButtonText="@WtmBlazor.Localizer["Sys.Close"]"
+                                          ConfirmButtonText="@WtmBlazor.Localizer["Sys.BatchDelete"]" ConfirmButtonColor="Color.Danger" />
+        }
+
+        @if (IsAccessable("/api/CameraRepair/Import"))
+        {
+            <TableToolbarButton TItem="CameraRepair_View" Color="Color.Primary" Icon="fa fa-fw fa-upload" Text="@WtmBlazor.Localizer["Sys.Import"]" OnClickCallback="@OnImportClick" />
+        }
+        @if (IsAccessable("/api/CameraRepair/ExportExcel"))
+        {
+            <TableToolbarButton TItem="CameraRepair_View" Color="Color.Primary" Icon="fa fa-fw fa-download" Text="@WtmBlazor.Localizer["Sys.Export"]" OnClickCallback="@OnExportClick" IsAsync="true" />
+        }
+    </TableToolbarTemplate>
+    <RowButtonTemplate>
+        <div style="padding-right:10px;">
+            @*@if (IsAccessable("/api/CameraRepair/Edit"))
+                {
+                    <TableCellButton Size="Size.ExtraSmall" Color="Color.Success" Icon="fa fa-edit" Text="@WtmBlazor.Localizer["Sys.Edit"]" OnClickCallback="() => OnEditClick(context)" />
+                }*@
+            @if (IsAccessable("/api/CameraRepair/{id}"))
+            {
+                <TableCellButton Size="Size.ExtraSmall" Color="Color.Info" Icon="fa fa-info" Text="@WtmBlazor.Localizer["Sys.Details"]" OnClickCallback="()=>OnDetailsClick(context)" />
+            }
+            @*@if (IsAccessable("/api/CameraRepair/BatchDelete"))
+                {
+                    <PopConfirmButton Icon="fa fa-trash-o" Text="@WtmBlazor.Localizer["Sys.Delete"]" OnConfirm="() => OnDeleteClick(context)" Color="Color.Danger" Size="Size.ExtraSmall"
+                                      Content="@WtmBlazor.Localizer["Sys.DeleteConfirm"]" CloseButtonText="@WtmBlazor.Localizer["Sys.Close"]" ConfirmButtonText="@WtmBlazor.Localizer["Sys.Delete"]" ConfirmButtonColor="Color.Danger" />
+                }*@
+        </div>
+    </RowButtonTemplate>
+
+    <EditTemplate>
+
+        <Row ItemsPerRow="ItemsPerRow.Three" RowType="RowType.Normal">
+
+
+            <BootstrapInput @bind-Value="@context.Camera_ID_view" IsDisabled="true" />
+            <!-- <BootstrapInput @bind-Value="@context.AnomalyTime" IsDisabled="true"/>-->
+            <BootstrapInput @bind-Value="@context.CollectTime" IsDisabled="true" />
+            <Select @bind-Value="@context.AnomalyType" PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]" />
+            <Select @bind-Value="@context.AnomalyGrade" PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]" />
+            <BootstrapInput @bind-Value="@context.Registrar" IsDisabled="true" />
+            <Select @bind-Value="@context.RepairState" PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]" />
+            <BootstrapInput @bind-Value="@context.RepairedTime" IsDisabled="true" />
+            <BootstrapInput @bind-Value="@context.Accendant" IsDisabled="true" />
+            <BootstrapInput @bind-Value="@context.RepairDetails" />
+            <BootstrapInput @bind-Value="@context.RepairFirm" />
+            <BootstrapInput @bind-Value="@context.Supervisor" IsDisabled="true" />
+            <BootstrapInput @bind-Value="@context.ReplacePart" />
+            <BootstrapInput @bind-Value="@context.ProjectAnomaly" />
+            <Select @bind-Value="@context.AnomalyIdentification" PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]" />
+            <BootstrapInput @bind-Value="@context.Remark" />
+
+        </Row>
+
+        <Button Color="Color.Primary" Text="查看监控" OnClick="()=>CameraPictrue(context.Camera_ID_view)" />
+
+    </EditTemplate>
+
+    <SearchTemplate>
+
+        <ValidateForm Model="@SearchModel">
+            <Row ItemsPerRow="ItemsPerRow.Three" RowType="RowType.Inline">
+
+                <MultiSelect @bind-Value="@SearchModel.Monitor_Room" Items="@AllRooms" PlaceHolder="@WtmBlazor.Localizer["Sys.Search"]" />
+
+                <WtmBlazorUtils.WTDateRange   @bind-Value="@SearchModel.CollectTime" />
+                <WtmBlazorUtils.WTDateRange @bind-Value="@SearchModel.RepairedTime" />
+                <MultiSelect @bind-Value="@SearchModel.AnomalyType" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]" />
+                <MultiSelect @bind-Value="@SearchModel.AnomalyGrade" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]" />
+                <Select @bind-Value="@SearchModel.RepairState" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]" />
+                <Select @bind-Value="@SearchModel.AnomalyIdentification" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]" />
+                <BootstrapInput @bind-Value="@SearchModel.Location" />
+            </Row>
+        </ValidateForm>
+
+    </SearchTemplate>
+
+
+
+</Table>

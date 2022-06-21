@@ -1,0 +1,49 @@
+﻿@page "/Repair/AlarmRepair/Details/{id}"
+@using OnMonitor.ViewModel.Repair.AlarmRepairVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" >
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.Normal">
+
+            <Display @bind-Value="@Model.Entity.AlarmId" Lookup="@AllAlarms"  ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.TestTime"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.AnomalyTime"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.AlarmAnomalyState"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.Registrar"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.RepairState"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.RepairedTime"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.Accendant"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.RepairDetails"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.RepairFirm"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.Supervisor"   ShowLabel="true"/>
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private AlarmRepairVM Model = null;
+    private ValidateForm vform { get; set; }
+    [Parameter]
+    public string id { get; set; }
+
+    private List<SelectedItem> AllAlarms = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllAlarms = await WtmBlazor.Api.CallItemsApi("/api/AlarmRepair/GetAlarms", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        var rv = await WtmBlazor.Api.CallAPI<AlarmRepairVM>($"/api/AlarmRepair/{id}");
+        Model = rv.Data;
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}

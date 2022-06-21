@@ -1,0 +1,11 @@
+F:\GitCode\EquipmentStatus\Redis.Exchange\bin\Release\Ruanmou.Redis.Exchange.dll
+F:\GitCode\EquipmentStatus\Redis.Exchange\bin\Release\Ruanmou.Redis.Exchange.pdb
+F:\GitCode\EquipmentStatus\Redis.Exchange\bin\Release\Newtonsoft.Json.dll
+F:\GitCode\EquipmentStatus\Redis.Exchange\bin\Release\StackExchange.Redis.dll
+F:\GitCode\EquipmentStatus\Redis.Exchange\bin\Release\Newtonsoft.Json.xml
+F:\GitCode\EquipmentStatus\Redis.Exchange\bin\Release\StackExchange.Redis.xml
+F:\GitCode\EquipmentStatus\Redis.Exchange\obj\Release\Redis.Exchange.csproj.AssemblyReference.cache
+F:\GitCode\EquipmentStatus\Redis.Exchange\obj\Release\Redis.Exchange.csproj.CoreCompileInputs.cache
+F:\GitCode\EquipmentStatus\Redis.Exchange\obj\Release\Redis.Exchange.csproj.CopyComplete
+F:\GitCode\EquipmentStatus\Redis.Exchange\obj\Release\Ruanmou.Redis.Exchange.dll
+F:\GitCode\EquipmentStatus\Redis.Exchange\obj\Release\Ruanmou.Redis.Exchange.pdb

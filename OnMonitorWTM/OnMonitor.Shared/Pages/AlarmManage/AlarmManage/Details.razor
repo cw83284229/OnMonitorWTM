@@ -1,0 +1,51 @@
+﻿@page "/AlarmManage/AlarmManage/Details/{id}"
+@using OnMonitor.ViewModel.AlarmManages.AlarmManageVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" >
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.Normal">
+
+            <Display @bind-Value="@Model.Entity.AlarmId" Lookup="@AllAlarms"  ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.AlarmTime"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.WithdrawTime"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.WithdrawMan"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.WithdrawRemark"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.WithdrawType"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.DefenceTime"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.TreatmentTime"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.TreatmentTimeState"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.TreatmentMan"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.TreatmentReply"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.AlarmType"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.Remark"   ShowLabel="true"/>
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private AlarmManageVM Model = null;
+    private ValidateForm vform { get; set; }
+    [Parameter]
+    public string id { get; set; }
+
+    private List<SelectedItem> AllAlarms = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllAlarms = await WtmBlazor.Api.CallItemsApi("/api/AlarmManage/GetAlarms", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        var rv = await WtmBlazor.Api.CallAPI<AlarmManageVM>($"/api/AlarmManage/{id}");
+        Model = rv.Data;
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}

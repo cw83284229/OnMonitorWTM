@@ -1,0 +1,59 @@
+﻿@page "/Project/ProjectChangeCamera/BatchEdit/{id}"
+@using OnMonitor.ViewModel.Project.ProjectChangeCameraVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" OnValidSubmit="@Submit">
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.Normal">
+
+            
+            <Select @bind-Value="@Model.Entity.TransformationStatus"  PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+        <Button Color="Color.Primary" ButtonType="ButtonType.Submit" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Edit"]" IsAsync="true" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private ProjectChangeCameraVM Model = null;
+    private ValidateForm vform { get; set; }
+    [Parameter]
+    public List<Guid> id { get; set; }
+
+    private List<SelectedItem> AllProjectManagess = new List<SelectedItem>();
+
+    private List<SelectedItem> AllCameras = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllProjectManagess = await WtmBlazor.Api.CallItemsApi("/api/ProjectChangeCamera/GetProjectManagess", placeholder: WtmBlazor.Localizer["Sys.PleaseSelect"]);
+
+        AllCameras = await WtmBlazor.Api.CallItemsApi("/api/ProjectChangeCamera/GetCameras", placeholder: WtmBlazor.Localizer["Sys.PleaseSelect"]);
+
+        var rv = await WtmBlazor.Api.CallAPI<ProjectChangeCameraVM>($"/api/ProjectChangeCamera/{id.FirstOrDefault()}");
+        Model = rv.Data;
+        await base.OnInitializedAsync();
+    }
+
+    private async Task Submit(EditContext context)
+    {
+        foreach (var item in id)
+        {
+            Model.Entity.ID = item;
+            await PostsForm(vform, $"/api/ProjectChangeCamera/edit", (s) => "Sys.OprationSuccess", method: HttpMethodEnum.PUT);
+        }
+
+
+
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}

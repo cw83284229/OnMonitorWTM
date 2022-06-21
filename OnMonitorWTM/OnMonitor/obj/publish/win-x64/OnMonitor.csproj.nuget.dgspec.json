@@ -1,0 +1,512 @@
+{
+  "format": 1,
+  "restore": {
+    "F:\\GitCode\\OnMonitorWTM\\OnMonitor\\OnMonitor.csproj": {}
+  },
+  "projects": {
+    "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Client\\OnMonitor.Client.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Client\\OnMonitor.Client.csproj",
+        "projectName": "OnMonitor.Client",
+        "projectPath": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Client\\OnMonitor.Client.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Client\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\VisualStudio\\check\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Shared\\OnMonitor.Shared.csproj": {
+                "projectPath": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Shared\\OnMonitor.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Components.WebAssembly": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly.DevServer": {
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "System.Net.Http.Json": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
+              "version": "[6.0.2, 6.0.2]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "browser-wasm": {
+          "#import": []
+        }
+      }
+    },
+    "F:\\GitCode\\OnMonitorWTM\\OnMonitor.DataAccess\\OnMonitor.DataAccess.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.DataAccess\\OnMonitor.DataAccess.csproj",
+        "projectName": "OnMonitor.DataAccess",
+        "projectPath": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.DataAccess\\OnMonitor.DataAccess.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.DataAccess\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\VisualStudio\\check\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Model\\OnMonitor.Model.csproj": {
+                "projectPath": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Model\\OnMonitor.Model.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
+        }
+      }
+    },
+    "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Model\\OnMonitor.Model.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Model\\OnMonitor.Model.csproj",
+        "projectName": "OnMonitor.Model",
+        "projectPath": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Model\\OnMonitor.Model.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Model\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\VisualStudio\\check\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "WalkingTec.Mvvm.Core": {
+              "target": "Package",
+              "version": "[6.1.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
+        }
+      }
+    },
+    "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Shared\\OnMonitor.Shared.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Shared\\OnMonitor.Shared.csproj",
+        "projectName": "OnMonitor.Shared",
+        "projectPath": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Shared\\OnMonitor.Shared.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Shared\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\VisualStudio\\check\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "F:\\GitCode\\OnMonitorWTM\\OnMonitor.ViewModel\\OnMonitor.ViewModel.csproj": {
+                "projectPath": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.ViewModel\\OnMonitor.ViewModel.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "BootstrapBlazor": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "BootstrapBlazor.Chart": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "BootstrapBlazor.Markdown": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
+        }
+      }
+    },
+    "F:\\GitCode\\OnMonitorWTM\\OnMonitor.ViewModel\\OnMonitor.ViewModel.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.ViewModel\\OnMonitor.ViewModel.csproj",
+        "projectName": "OnMonitor.ViewModel",
+        "projectPath": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.ViewModel\\OnMonitor.ViewModel.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.ViewModel\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\VisualStudio\\check\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Model\\OnMonitor.Model.csproj": {
+                "projectPath": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Model\\OnMonitor.Model.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
+        }
+      }
+    },
+    "F:\\GitCode\\OnMonitorWTM\\OnMonitor\\OnMonitor.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "F:\\GitCode\\OnMonitorWTM\\OnMonitor\\OnMonitor.csproj",
+        "projectName": "OnMonitor",
+        "projectPath": "F:\\GitCode\\OnMonitorWTM\\OnMonitor\\OnMonitor.csproj",
+        "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
+        "outputPath": "F:\\GitCode\\OnMonitorWTM\\OnMonitor\\obj\\publish\\win-x64\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\VisualStudio\\check\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Client\\OnMonitor.Client.csproj": {
+                "projectPath": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Client\\OnMonitor.Client.csproj"
+              },
+              "F:\\GitCode\\OnMonitorWTM\\OnMonitor.DataAccess\\OnMonitor.DataAccess.csproj": {
+                "projectPath": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.DataAccess\\OnMonitor.DataAccess.csproj"
+              },
+              "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Shared\\OnMonitor.Shared.csproj": {
+                "projectPath": "F:\\GitCode\\OnMonitorWTM\\OnMonitor.Shared\\OnMonitor.Shared.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "CHTCHSConv": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly.Server": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "WalkingTec.Mvvm.Mvc": {
+              "target": "Package",
+              "version": "[6.1.2, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
+              "version": "[6.0.2, 6.0.2]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Runtime.win-x64",
+              "version": "[6.0.2, 6.0.2]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
+              "version": "[6.0.2, 6.0.2]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win-x64": {
+          "#import": []
+        }
+      }
+    }
+  }
+}

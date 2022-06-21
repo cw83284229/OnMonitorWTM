@@ -1,0 +1,6 @@
+F:\GitCode\EquipmentStatus\NetSDKCS\bin\x64\Release\NetSDKCS.dll
+F:\GitCode\EquipmentStatus\NetSDKCS\bin\x64\Release\NetSDKCS.pdb
+F:\GitCode\EquipmentStatus\NetSDKCS\obj\x64\Release\NetSDKCS.csproj.AssemblyReference.cache
+F:\GitCode\EquipmentStatus\NetSDKCS\obj\x64\Release\NetSDKCS.csproj.CoreCompileInputs.cache
+F:\GitCode\EquipmentStatus\NetSDKCS\obj\x64\Release\NetSDKCS.dll
+F:\GitCode\EquipmentStatus\NetSDKCS\obj\x64\Release\NetSDKCS.pdb

@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "kLEHxLWGr2l2Dx/Jhe4gYbPVVpCAZWVggFg6VokZH6dcqf9DXsWWDYkmoJ9TqUb6+UDB0YMiL78vEx/x7lXW4A==",
+  "success": true,
+  "projectFilePath": "D:\\GithubCode\\DVROperation\\DVROperation\\DVRApi\\DVRApi.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\3.0.0\\microsoft.aspnetcore.jsonpatch.3.0.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\3.0.0\\microsoft.aspnetcore.mvc.newtonsoftjson.3.0.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.csharp\\4.6.0\\microsoft.csharp.4.6.0.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\newtonsoft.json\\12.0.2\\newtonsoft.json.12.0.2.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\swashbuckle.aspnetcore.newtonsoft\\6.1.4\\swashbuckle.aspnetcore.newtonsoft.6.1.4.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.1.4\\swashbuckle.aspnetcore.swagger.6.1.4.nupkg.sha512",
+    "C:\\Users\\Administrator\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.1.4\\swashbuckle.aspnetcore.swaggergen.6.1.4.nupkg.sha512"
+  ],
+  "logs": []
+}

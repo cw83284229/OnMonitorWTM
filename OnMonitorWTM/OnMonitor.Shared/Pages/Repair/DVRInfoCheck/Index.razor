@@ -1,0 +1,140 @@
+﻿@page "/Repair/DVRInfoCheck"
+@using OnMonitor.ViewModel.Repair.DVRInfoCheckVMs;
+@inherits BasePage
+@attribute [ActionDescription("主机异常", "OnMonitor.Controllers,DVRInfoCheck")]
+
+<WTSearchPanel OnSearch="@DoSearch">
+    <ValidateForm Model="@SearchModel">
+        <Row ItemsPerRow="ItemsPerRow.Three" RowType="RowType.Inline">
+            <MultiSelect @bind-Value="@SearchModel.Monitor_Room" Items="@AllRooms" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]" />
+            <Select @bind-Value="@SearchModel.TimeInfoChenk"  PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <Select @bind-Value="@SearchModel.DiskChenk"  PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <Select @bind-Value="@SearchModel.SNChenk"  PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            @*<Select @bind-Value="@SearchModel.VideoCheck90Day"  PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>*@
+            @*<Select @bind-Value="@SearchModel.VideoStarageTime "  PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>*@
+        </Row>
+    </ValidateForm>
+</WTSearchPanel>
+
+
+
+<Table @ref="dataTable" TItem="DVRInfoCheck_View" OnQueryAsync="OnSearch" IsPagination="true" IsStriped="true" IsBordered="true" ShowRefresh="false"
+       ShowToolbar="true" IsMultipleSelect="true" ShowExtendButtons="true" ShowDefaultButtons="false" style="margin-top:10px;">
+    <TableColumns>
+        <TableColumn @bind-Field="@context.Monitor_Room" />
+        <TableColumn @bind-Field="@context.DVR_ID_view" />
+        <TableColumn @bind-Field="@context.DVR_SN" />
+       @* <TableColumn @bind-Field="@context.DVR_Channel" />*@
+        <TableColumn @bind-Field="@context.DiskTotal" />
+        <TableColumn @bind-Field="@context.DVR_Online" ComponentType="@typeof(Switch)" />
+        <TableColumn @bind-Field="@context.TimeInfoChenk" ComponentType="@typeof(Switch)" />
+        <TableColumn @bind-Field="@context.DiskChenk" ComponentType="@typeof(Switch)" />
+        <TableColumn @bind-Field="@context.SNChenk" ComponentType="@typeof(Switch)" />
+      @*  <TableColumn @bind-Field="@context.VideoCheck90Day" ComponentType="@typeof(Switch)" />*@
+        <TableColumn @bind-Field="@context.VideoStarageTime" />
+        <TableColumn @bind-Field="@context.UpdateTime" />
+        <TableColumn @bind-Field="@context.Remark" />
+    </TableColumns>
+    <TableToolbarTemplate>
+     
+        @if (IsAccessable("/api/DVRInfoCheck/BatchDelete"))
+        {
+            <TableToolbarPopconfirmButton TItem="DVRInfoCheck_View" Color="Color.Primary"
+                                          Icon="fa fa-fw fa-trash-o" Text="@WtmBlazor.Localizer["Sys.BatchDelete"]"
+                                          OnConfirm="@OnBatchDeleteClick" Content="@WtmBlazor.Localizer["Sys.BatchDeleteConfirm"]" CloseButtonText="@WtmBlazor.Localizer["Sys.Close"]"
+                                          ConfirmButtonText="@WtmBlazor.Localizer["Sys.BatchDelete"]" ConfirmButtonColor="Color.Danger" />
+        }
+        
+        @if (IsAccessable("/api/DVRInfoCheck/ExportExcel"))
+        {
+            <TableToolbarButton TItem="DVRInfoCheck_View" Color="Color.Primary" Icon="fa fa-fw fa-download" Text="@WtmBlazor.Localizer["Sys.Export"]" OnClickCallback="@OnExportClick" IsAsync="true" />
+        }
+    </TableToolbarTemplate>
+    <RowButtonTemplate>
+        <div style="padding-right:10px;">
+            @if (IsAccessable("/api/DVRInfoCheck/{id}"))
+            { 
+            <TableCellButton Size="Size.ExtraSmall" Color="Color.Info" Icon="fa fa-info" Text="@WtmBlazor.Localizer["Sys.Details"]"  OnClick ="()=>OnDetailsClick(context.DVR_ID_view)" />
+             }
+            @if (IsAccessable("/api/DVRInfoCheck/BatchDelete"))
+            {
+                <PopConfirmButton Icon="fa fa-trash-o" Text="@WtmBlazor.Localizer["Sys.Delete"]" OnConfirm="() => OnDeleteClick(context)" Color="Color.Danger" Size="Size.ExtraSmall"
+                                  Content="@WtmBlazor.Localizer["Sys.DeleteConfirm"]" CloseButtonText="@WtmBlazor.Localizer["Sys.Close"]" ConfirmButtonText="@WtmBlazor.Localizer["Sys.Delete"]" ConfirmButtonColor="Color.Danger" />
+            }
+        </div>
+    </RowButtonTemplate>
+</Table>
+
+@code{
+
+    private DVRInfoCheckSearcher SearchModel = new DVRInfoCheckSearcher();
+    private Table<DVRInfoCheck_View> dataTable;
+    private List<SelectedItem> AllRooms = new List<SelectedItem>();
+    private List<SelectedItem> AllDVRs = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllDVRs = await WtmBlazor.Api.CallItemsApi("/api/DVRInfoCheck/GetDVRs", placeholder: WtmBlazor.Localizer["Sys.All"]);
+        AllRooms = await WtmBlazor.Api.CallItemsApi("/api/CameraRepair/GetMonitorRoom", placeholder: WtmBlazor.Localizer["Sys.All"]);
+        await base.OnInitializedAsync();
+    }
+
+    private async Task<QueryData<DVRInfoCheck_View>> OnSearch(QueryPageOptions opts)
+    {
+        return await StartSearch<DVRInfoCheck_View>("/api/DVRInfoCheck/search", SearchModel, opts);
+    }
+
+    private void DoSearch()
+    {
+        dataTable.QueryAsync();
+    }
+
+    private async Task OnDetailsClick(string DVRId)
+    {
+        await OpenDialog<DVROperation.DVRInfo>($"主机号:{DVRId}", x => x.DVRId == DVRId, Size.ExtraLarge);
+    }
+
+
+
+    private async Task OnBatchDeleteClick()
+    {
+        if (dataTable.SelectedRows?.Any() == true)
+        {
+            await PostsData(dataTable.SelectedRows.Select(x => x.ID).ToList(), $"/api/DVRInfoCheck/batchdelete", (s) => WtmBlazor.Localizer["Sys.BatchDeleteSuccess", s]);
+            await dataTable.QueryAsync();
+        }
+        else
+        {
+            await WtmBlazor.Toast.Information(WtmBlazor.Localizer["Sys.Info"], WtmBlazor.Localizer["Sys.SelectOneRowMin"]);
+        }
+    }
+
+    private async Task OnDeleteClick(DVRInfoCheck_View item)
+    {
+        await PostsData(new List<string> { item.ID.ToString() }, $"/api/DVRInfoCheck/batchdelete", (s) => "Sys.OprationSuccess");
+        await dataTable.QueryAsync();
+    }
+
+
+    private async Task OnExportClick(IEnumerable<DVRInfoCheck_View> items)
+    {
+        if (dataTable.SelectedRows?.Any() == true)
+        {
+            await Download("/api/DVRInfoCheck/ExportExcelByIds", dataTable.SelectedRows.Select(x => x.ID.ToString()).ToList());
+        }
+        else
+        {
+            await Download("/api/DVRInfoCheck/ExportExcel", SearchModel);
+        }
+    }
+    private async Task OnImportClick(IEnumerable<DVRInfoCheck_View> items)
+    {
+        if (await OpenDialog<Import>(WtmBlazor.Localizer["Sys.Import"]) == DialogResult.Yes)
+        {
+            await dataTable.QueryAsync();
+        }
+    }
+
+}

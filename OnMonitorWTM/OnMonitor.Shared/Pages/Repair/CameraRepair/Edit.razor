@@ -1,0 +1,62 @@
+﻿@page "/Repair/CameraRepair/Edit/{id}"
+@using OnMonitor.ViewModel.Repair.CameraRepairVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" OnValidSubmit="@Submit">
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.Normal">
+
+            <Select @bind-Value="@Model.Entity.CameraId" Items="@AllCameras" PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <BootstrapInput @bind-Value="@Model.Entity.AnomalyTime"  />
+            <BootstrapInput @bind-Value="@Model.Entity.CollectTime"  />
+            <Select @bind-Value="@Model.Entity.AnomalyType"  PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <Select @bind-Value="@Model.Entity.AnomalyGrade"  PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <BootstrapInput @bind-Value="@Model.Entity.Registrar"  />
+            <Select @bind-Value="@Model.Entity.RepairState"  PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <BootstrapInput @bind-Value="@Model.Entity.RepairedTime"  />
+            <BootstrapInput @bind-Value="@Model.Entity.Accendant"  />
+            <BootstrapInput @bind-Value="@Model.Entity.RepairDetails"  />
+            <BootstrapInput @bind-Value="@Model.Entity.RepairFirm"  />
+            <BootstrapInput @bind-Value="@Model.Entity.Supervisor"  />
+            <BootstrapInput @bind-Value="@Model.Entity.ReplacePart"  />
+            <BootstrapInput @bind-Value="@Model.Entity.ProjectAnomaly"  />
+            <Switch @bind-Value="@Model.Entity.NoSignal"  />
+            <Select @bind-Value="@Model.Entity.AnomalyIdentification"  PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <BootstrapInput @bind-Value="@Model.Entity.Remark"  />
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+        <Button Color="Color.Primary" ButtonType="ButtonType.Submit" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Edit"]" IsAsync="true" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private CameraRepairVM Model = new CameraRepairVM();
+    private ValidateForm vform { get; set; }
+    [Parameter]
+    public string id { get; set; }
+
+    private List<SelectedItem> AllCameras = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllCameras = await WtmBlazor.Api.CallItemsApi("/api/CameraRepair/GetCameras", placeholder: WtmBlazor.Localizer["Sys.PleaseSelect"]);
+
+        var rv = await WtmBlazor.Api.CallAPI<CameraRepairVM>($"/api/CameraRepair/{id}");
+        Model = rv.Data;
+         await base.OnInitializedAsync();
+   }
+
+    private async Task Submit(EditContext context)
+    {
+        await PostsForm(vform, $"/api/CameraRepair/edit", (s) => "Sys.OprationSuccess", method: HttpMethodEnum.PUT);
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}

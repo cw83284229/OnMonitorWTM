@@ -1,0 +1,110 @@
+﻿@page "/DVROperation/DVRInfo/{DVRId}"
+@using OnMonitor.Models;
+@inherits BasePage
+
+
+
+
+<Row ItemsPerRow="ItemsPerRow.Four" RowType="RowType.Normal">
+
+    <h6>项目</h6>
+    <h6>资料库</h6>
+    <h6>DVR信息</h6>
+    <h6>比对结果</h6>
+
+</Row>
+<Row ItemsPerRow="ItemsPerRow.Four" RowType="RowType.Normal">
+
+    <h6>SN</h6>
+    <h6>@DVRcheckinfo.DataDVR_SN</h6>
+    <h6>@DVRcheckinfo.DVR_SN</h6>
+    <h6>
+        @if (DVRcheckinfo.SNChenk == true)
+        {
+            <Button Color="Color.Success" Text="OK" IsDisabled="true"></Button>
+        }
+        else
+        {
+            <Button Color="Color.Danger" Text="NO" IsDisabled="true"></Button>
+        }
+    </h6>
+
+</Row>
+<Row ItemsPerRow="ItemsPerRow.Four" RowType="RowType.Normal">
+
+    <h6>时间</h6>
+    <h6>@DVRcheckinfo.SystemTime</h6>
+    <h6>@DVRcheckinfo.DVRTime</h6>
+    <h6>
+        @if (DVRcheckinfo.TimeInfoChenk == true)
+        {
+            <Button Color="Color.Success" Text="OK" IsDisabled="true"></Button>
+        }
+        else
+        {
+            <Button Color="Color.Danger" Text="NO" IsDisabled="true"></Button>
+        }
+    </h6>
+</Row>
+<Row ItemsPerRow="ItemsPerRow.Four" RowType="RowType.Normal">
+
+    <h6>硬盘</h6>
+    <h6>@DVRcheckinfo.DataDiskTotal</h6>
+    <h6>@DVRcheckinfo.DiskTotal</h6>
+    <h6>
+        @if (DVRcheckinfo.DiskChenk == true)
+        {
+            <Button Color="Color.Success" Text="OK" IsDisabled="true"></Button>
+        }
+        else
+        {
+            <Button Color="Color.Danger" Text="NO" IsDisabled="true"></Button>
+        }
+
+    </h6>
+</Row>
+<Row ItemsPerRow="ItemsPerRow.Twelve" RowType="RowType.Normal">
+
+    硬盘详情：
+    @foreach (var item in disk)
+    {
+        <Button Color="Color.Info" IsDisabled="true">@(item.Number+1)号:</Button>
+        <Button Color="Color.None" IsDisabled="true"><b>@item.Disk.ToString()</b>GB</Button>
+
+    }
+
+</Row>
+<div>   .</div>
+<Row ItemsPerRow="ItemsPerRow.Four" RowType="RowType.Normal">
+  <Button Text="DVR编号同步" OnClick="()=>DVRChannelNameRectity(DVRId)"></Button>
+</Row>
+<Table @ref="dataTable" TItem="DVRChannelInfoModel" IsStriped="true" IsBordered="true" ShowAddButton="false"
+       ShowCheckboxText="true" ShowDefaultButtons="false" ShowEditButton="false" style="margin-top:10px;">
+
+    <TableColumns>
+
+        <TableColumn @bind-Field="@context.Channelid" />
+        <TableColumn @bind-Field="@context.DataChannelName" />
+        <TableColumn @bind-Field="@context.DVRChannelName" />
+@*
+        <TableColumn @bind-Field="@context.ChannelNameCheck" Align="Alignment.Center">
+            <Template Context="value">
+                @if (context.ChannelNameCheck == true)
+                {
+                    <TableCellButton Color="Color.Success" Text="OK" IsDisabled="true"></TableCellButton>
+                }
+                else if (context.ChannelNameCheck == false)
+                {
+                    <TableCellButton Color="Color.Danger" @onclick="()=>ChannelNameRectity(context.DataChannelName)" Text="NO"></TableCellButton>
+                }
+
+
+            </Template>
+        </TableColumn>*@
+          <TableColumn @bind-Field="@context.ChannelNameCheck" />
+    </TableColumns>
+
+
+</Table>
+
+

@@ -1,0 +1,36 @@
+﻿@page "/dvrInfo/VideoDownload"
+@inherits BasePage
+
+<Row ItemsPerRow="ItemsPerRow.Four" RowType="RowType.Normal">
+    <Select  ShowLabel="true" @bind-Value="@CameraId" DisplayText="镜头编号" ShowSearch="true" Items="@AllCameras" PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]" />
+    <DateTimePicker ShowLabel="true" ShowSidebar=true ViewMode=DatePickerViewMode.DateTime TValue="DateTime" @bind-Value="@datetimeStart" DisplayText="开始时间" />
+    <DateTimePicker ShowLabel="true" ShowSidebar=true ViewMode=DatePickerViewMode.DateTime TValue="DateTime" @bind-Value="@datetimeEnd" DisplayText="结束时间" />
+    <Button Color="Color.Info"  OnClick="@GeneratingVideoFile" Text="生成视频"></Button>
+
+</Row>
+<Row ItemsPerRow="ItemsPerRow.One" RowType="RowType.Inline">
+    <h5>视频下载进度</h5> 
+    <Progress IsShowValue="true" @bind-Value="@progressLong">  </Progress>
+</Row>
+    <Table @ref="dataTable" TItem="VideoInfo" IsStriped="true" ShowToolbar="true" IsBordered="true" ShowAddButton="false"
+           ShowCheckboxText="true" ShowDefaultButtons="false" ShowExtendButtons="true" ShowEditButton="false" style="margin-top:10px;">
+        <TableColumns>
+            <TableColumn @bind-Field="@context.id" />
+            <TableColumn @bind-Field="@context.name" />
+            <TableColumn @bind-Field="@context.Size" />
+
+        </TableColumns>
+
+
+        <RowButtonTemplate>
+            <div style="padding-right:10px;">
+
+                <TableCellButton Size="Size.ExtraSmall" Color="Color.Success" OnClick="() =>DownloadVideoFile(context)" Icon="fa fa-edit" Text="下载" />
+
+                <TableCellButton Size="Size.ExtraSmall" Color="Color.Info" OnClick="() =>DeleteVideoFile(context)" Icon="fa fa-info" Text="删除" />
+
+            </div>
+        </RowButtonTemplate>
+    </Table>
+
+
