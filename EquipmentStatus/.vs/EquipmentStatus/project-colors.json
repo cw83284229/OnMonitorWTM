@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "506baa29-4b88-4be8-b74f-13ca6e9502e5": {
+      "ProjectGuid": "506baa29-4b88-4be8-b74f-13ca6e9502e5",
+      "DisplayName": "EquipmentStatus.Models",
+      "ColorIndex": 0
+    },
+    "cb08dcbb-9faa-404c-a4db-385f1619597f": {
+      "ProjectGuid": "cb08dcbb-9faa-404c-a4db-385f1619597f",
+      "DisplayName": "EquipmentStatus",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

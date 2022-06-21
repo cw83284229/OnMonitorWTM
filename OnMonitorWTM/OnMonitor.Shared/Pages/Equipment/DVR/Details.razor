@@ -1,0 +1,54 @@
+﻿@page "/Equipment/DVR/Details/{id}"
+@using OnMonitor.ViewModel.Equipment.DVRVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" >
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.Normal">
+
+            <Display @bind-Value="@Model.Entity.monitorRoomId" Lookup="@AllMonitorRooms"  ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.DVR_ID"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.Home_server"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.Hard_drive"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.DVR_IP"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.DVR_port"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.DVR_usre"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.DVR_possword"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.install_time"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.Manufacturer"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.DVR_type"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.DVR_SN"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.DVR_Channel"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.department"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.Cost_code"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.Remark"   ShowLabel="true"/>
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private DVRVM Model = null;
+    private ValidateForm vform { get; set; }
+    [Parameter]
+    public string id { get; set; }
+
+    private List<SelectedItem> AllMonitorRooms = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllMonitorRooms = await WtmBlazor.Api.CallItemsApi("/api/DVR/GetMonitorRooms", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        var rv = await WtmBlazor.Api.CallAPI<DVRVM>($"/api/DVR/{id}");
+        Model = rv.Data;
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}

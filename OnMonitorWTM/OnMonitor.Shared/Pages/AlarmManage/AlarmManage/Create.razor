@@ -1,0 +1,55 @@
+﻿@page "/AlarmManage/AlarmManage/Create"
+@using OnMonitor.ViewModel.AlarmManages.AlarmManageVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" OnValidSubmit="@Submit">
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.Normal">
+
+            <Select @bind-Value="@Model.Entity.AlarmId" Items="@AllAlarms" PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <DateTimePicker @bind-Value="@Model.Entity.AlarmTime"  />
+            <DateTimePicker  ViewMode=DatePickerViewMode.DateTime @bind-Value="@Model.Entity.WithdrawTime"  />
+            <BootstrapInput @bind-Value="@Model.Entity.WithdrawMan"  />
+            <BootstrapInput @bind-Value="@Model.Entity.WithdrawRemark"  />
+            <BootstrapInput @bind-Value="@Model.Entity.WithdrawType"  />
+            <DateTimePicker @bind-Value="@Model.Entity.DefenceTime"  />
+            <DateTimePicker @bind-Value="@Model.Entity.TreatmentTime"  />
+            <BootstrapInput @bind-Value="@Model.Entity.TreatmentTimeState"  />
+            <BootstrapInput @bind-Value="@Model.Entity.TreatmentMan"  />
+            <BootstrapInput @bind-Value="@Model.Entity.TreatmentReply"  />
+            <Select @bind-Value="@Model.Entity.AlarmType"  PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <BootstrapInput @bind-Value="@Model.Entity.Remark"  />
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+        <Button Color="Color.Primary" ButtonType="ButtonType.Submit" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Create"]" IsAsync="true" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private AlarmManageVM Model = new AlarmManageVM();
+    private ValidateForm vform { get; set; }
+
+    private List<SelectedItem> AllAlarms = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllAlarms = await WtmBlazor.Api.CallItemsApi("/api/AlarmManage/GetAlarms", placeholder: WtmBlazor.Localizer["Sys.PleaseSelect"]);
+
+        await base.OnInitializedAsync();
+    }
+
+
+    private async Task Submit(EditContext context)
+    {
+        await PostsForm(vform, "/api/AlarmManage/add", (s) => "Sys.OprationSuccess");
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}

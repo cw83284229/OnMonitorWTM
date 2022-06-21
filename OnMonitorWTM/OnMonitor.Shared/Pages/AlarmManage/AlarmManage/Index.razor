@@ -1,0 +1,210 @@
+﻿@page "/AlarmManage/AlarmManage"
+@using OnMonitor.ViewModel.AlarmManages.AlarmManageVMs;
+@inherits BasePage
+@attribute [ActionDescription("报警信息", "OnMonitor.Controllers,AlarmManage")]
+
+<WTSearchPanel OnSearch="@DoSearch">
+    <ValidateForm Model="@SearchModel">
+        <Row ItemsPerRow="ItemsPerRow.Three" RowType="RowType.Inline">
+           <Select @bind-Value="@SearchModel.MonitorRoomId" Items="@AllMonitorRooms" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <Select @bind-Value="@SearchModel.AlarmId" Items="@AllAlarms" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <WTDateRange @bind-Value="@SearchModel.AlarmTime"  />
+             <Select @bind-Value="@SearchModel.WithdrawType"  PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <WTDateRange @bind-Value="@SearchModel.DefenceTime"  />
+            <Select @bind-Value="@SearchModel.AlarmType"  PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+        </Row>
+    </ValidateForm>
+</WTSearchPanel>
+
+
+
+<Table @ref="dataTable" TItem="AlarmManage_View" OnQueryAsync="OnSearch" IsPagination="true" IsStriped="true" IsBordered="true" ShowRefresh="false" DoubleClickToEdit="true " OnSaveAsync="@OnEditDoubleClick"
+       ShowToolbar="true" IsMultipleSelect="true" ShowExtendButtons="true" ShowDefaultButtons="false" style="margin-top:10px;">
+    <TableColumns>
+        <TableColumn @bind-Field="@context.MonitorRoom"  />
+        <TableColumn @bind-Field="@context.Alarm_ID"  />
+        <TableColumn @bind-Field="@context.Build"  />
+        <TableColumn @bind-Field="@context.floor"  />
+        <TableColumn @bind-Field="@context.Location"  />
+        <TableColumn @bind-Field="@context.AlarmTime" FormatString="yyyy-MM-dd HH: mm: ss" />
+        <TableColumn @bind-Field="@context.AlarmType"  />
+        <TableColumn @bind-Field="@context.WithdrawTime" FormatString="yyyy-MM-dd HH: mm: ss" />
+        <TableColumn @bind-Field="@context.WithdrawType"  />
+        <TableColumn @bind-Field="@context.DefenceTime" FormatString="yyyy-MM-dd HH: mm: ss" />
+        <TableColumn @bind-Field="@context.TreatmentTime" FormatString="yyyy-MM-dd HH: mm: ss" />
+        <TableColumn @bind-Field="@context.WithdrawMan"  />
+       @* <TableColumn @bind-Field="@context.WithdrawRemark"  />
+        <TableColumn @bind-Field="@context.TreatmentTimeState"  />*@
+        <TableColumn @bind-Field="@context.TreatmentMan"  />
+        <TableColumn @bind-Field="@context.TreatmentReply"  />
+       
+        <TableColumn @bind-Field="@context.Remark"  />
+    </TableColumns>
+    <TableToolbarTemplate>
+        @if (IsAccessable("/api/AlarmManage/Add"))
+        {
+            <TableToolbarButton TItem="AlarmManage_View" Color="Color.Primary" Icon="fa fa-fw fa-plus" Text="@WtmBlazor.Localizer["Sys.Create"]" OnClickCallback="OnCreateClick" />
+        }
+        @if (IsAccessable("/api/AlarmManage/BatchDelete"))
+        {
+            <TableToolbarPopconfirmButton TItem="AlarmManage_View" Color="Color.Primary"
+                                          Icon="fa fa-fw fa-trash-o" Text="@WtmBlazor.Localizer["Sys.BatchDelete"]"
+                                          OnConfirm="@OnBatchDeleteClick" Content="@WtmBlazor.Localizer["Sys.BatchDeleteConfirm"]" CloseButtonText="@WtmBlazor.Localizer["Sys.Close"]"
+                                          ConfirmButtonText="@WtmBlazor.Localizer["Sys.BatchDelete"]" ConfirmButtonColor="Color.Danger" />
+        }
+        
+        @if (IsAccessable("/api/AlarmManage/Import"))
+        {
+            <TableToolbarButton TItem="AlarmManage_View" Color="Color.Primary" Icon="fa fa-fw fa-upload" Text="@WtmBlazor.Localizer["Sys.Import"]" OnClickCallback="@OnImportClick" />
+        }
+        @if (IsAccessable("/api/AlarmManage/ExportExcel"))
+        {
+            <TableToolbarButton TItem="AlarmManage_View" Color="Color.Primary" Icon="fa fa-fw fa-download" Text="@WtmBlazor.Localizer["Sys.Export"]" OnClickCallback="@OnExportClick" IsAsync="true" />
+        }
+    </TableToolbarTemplate>
+    <RowButtonTemplate>
+        <div style="padding-right:10px;">
+     
+            @if (IsAccessable("/api/AlarmManage/{id}"))
+            {
+                <TableCellButton Size="Size.ExtraSmall" Color="Color.Info" Icon="fa fa-info" Text="@WtmBlazor.Localizer["Sys.Details"]" OnClick="()=>OnDetailsClick(context)" />
+            }
+          
+        </div>
+    </RowButtonTemplate>
+
+
+    <EditTemplate>
+
+        <Row ItemsPerRow="ItemsPerRow.Three" RowType="RowType.Normal">
+            <BootstrapInput @bind-Value="@context.Alarm_ID" IsDisabled=true/>
+            <BootstrapInput @bind-Value="@context.AlarmTime"  IsDisabled=true/>
+            <Select @bind-Value="@context.AlarmType"  PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <BootstrapInput @bind-Value="@context.WithdrawTime" IsDisabled=true />
+            <BootstrapInput @bind-Value="@context.WithdrawMan"  />         
+            <Select @bind-Value="@context.WithdrawType"  PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <BootstrapInput @bind-Value="@context.DefenceTime"  IsDisabled=true/>
+            <BootstrapInput @bind-Value="@context.TreatmentTime" IsDisabled=true />
+            <BootstrapInput @bind-Value="@context.TreatmentReply"  />      
+            <BootstrapInput @bind-Value="@context.TreatmentMan"  />
+            <BootstrapInput @bind-Value="@context.Remark"  />
+        </Row>
+
+    </EditTemplate>
+
+</Table>
+
+@code{
+
+    private AlarmManageSearcher SearchModel = new AlarmManageSearcher();
+    private Table<AlarmManage_View> dataTable;
+    private ValidateForm vform = new ValidateForm();
+    private List<SelectedItem> AllAlarms = new List<SelectedItem>();
+    private List<SelectedItem> AllMonitorRooms = new List<SelectedItem>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        AllMonitorRooms = await WtmBlazor.Api.CallItemsApi("/api/DVR/GetMonitorRooms", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        AllAlarms = await WtmBlazor.Api.CallItemsApi("/api/AlarmManage/GetAlarms", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task<QueryData<AlarmManage_View>> OnSearch(QueryPageOptions opts)
+    {
+        return await StartSearch<AlarmManage_View>("/api/AlarmManage/Search", SearchModel, opts);
+    }
+
+    private void DoSearch()
+    {
+        dataTable.QueryAsync();
+    }
+
+    private async Task OnCreateClick(IEnumerable<AlarmManage_View> items)
+    {
+        if (await OpenDialog<Create>(WtmBlazor.Localizer["Sys.Create"]) == DialogResult.Yes)
+        {
+            await dataTable.QueryAsync();
+        }
+    }
+    private async Task<bool> OnEditDoubleClick(AlarmManage_View item, ItemChangedType changedType)
+    {
+        AlarmManageVM VM = new AlarmManageVM();
+
+        if (item.AlarmType != null)
+        {
+
+            item.WithdrawMan = UserInfo.Name;
+        }
+        if (item.WithdrawType != null)
+        {
+            item.WithdrawMan= UserInfo.Name;
+
+        }
+        if (item.TreatmentReply != null)
+        {
+           
+            item.TreatmentTime = DateTime.Now;
+        }
+
+        VM.Entity= item;
+
+        VM.Entity.AlarmId = Guid.Parse(AllAlarms.Where(u=>u.Text==item.Alarm_ID).FirstOrDefault().Value);
+        await PostsData(VM, $"/api/AlarmManage/edit", method: HttpMethodEnum.PUT);
+
+            return true;
+        }
+    private async Task OnEditClick(AlarmManage_View item)
+    {
+        if (await OpenDialog<Edit>(WtmBlazor.Localizer["Sys.Edit"], x => x.id == item.ID.ToString()) == DialogResult.Yes)
+        {
+            await dataTable.QueryAsync();
+        }
+    }
+
+    private async Task OnDetailsClick(AlarmManage_View item)
+    {
+        await OpenDialog<Details>(WtmBlazor.Localizer["Sys.Details"], x => x.id == item.ID.ToString());
+    }
+
+    private async Task OnBatchDeleteClick()
+    {
+        if (dataTable.SelectedRows?.Any() == true)
+        {
+            await PostsData(dataTable.SelectedRows.Select(x => x.ID).ToList(), $"/api/AlarmManage/batchdelete", (s) => WtmBlazor.Localizer["Sys.BatchDeleteSuccess", s]);
+            await dataTable.QueryAsync();
+        }
+        else
+        {
+            await WtmBlazor.Toast.Information(WtmBlazor.Localizer["Sys.Info"], WtmBlazor.Localizer["Sys.SelectOneRowMin"]);
+        }
+    }
+
+    private async Task OnDeleteClick(AlarmManage_View item)
+    {
+        await PostsData(new List<string> { item.ID.ToString() }, $"/api/AlarmManage/batchdelete", (s) => "Sys.OprationSuccess");
+        await dataTable.QueryAsync();
+    }
+
+
+    private async Task OnExportClick(IEnumerable<AlarmManage_View> items)
+    {
+        if (dataTable.SelectedRows?.Any() == true)
+        {
+            await Download("/api/AlarmManage/ExportExcelByIds", dataTable.SelectedRows.Select(x => x.ID.ToString()).ToList());
+        }
+        else
+        {
+            await Download("/api/AlarmManage/ExportExcel", SearchModel);
+        }
+    }
+    private async Task OnImportClick(IEnumerable<AlarmManage_View> items)
+    {
+        if (await OpenDialog<Import>(WtmBlazor.Localizer["Sys.Import"]) == DialogResult.Yes)
+        {
+            await dataTable.QueryAsync();
+        }
+    }
+
+}

@@ -1,0 +1,57 @@
+﻿@page "/Repair/DVRInfoCheck/Edit/{id}"
+@using OnMonitor.ViewModel.Repair.DVRInfoCheckVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" OnValidSubmit="@Submit">
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.Normal">
+
+            <Select @bind-Value="@Model.Entity.DVRId" Items="@AllDVRs" PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <BootstrapInput @bind-Value="@Model.Entity.DVR_SN"  />
+            <BootstrapInputNumber @bind-Value="@Model.Entity.DVR_Channel"  />
+            <BootstrapInputNumber @bind-Value="@Model.Entity.DiskTotal"  />
+            <BootstrapInput @bind-Value="@Model.Entity.DVRDISK"  />
+            <BootstrapInput @bind-Value="@Model.Entity.DVRChannelInfo"  />
+            <Select @bind-Value="@Model.Entity.DVR_Online"  PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <Select @bind-Value="@Model.Entity.TimeInfoChenk"  PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <Select @bind-Value="@Model.Entity.DiskChenk"  PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <Select @bind-Value="@Model.Entity.SNChenk"  PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <Select @bind-Value="@Model.Entity.VideoCheck90Day"  PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <BootstrapInput @bind-Value="@Model.Entity.Remark"  />
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+        <Button Color="Color.Primary" ButtonType="ButtonType.Submit" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Edit"]" IsAsync="true" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private DVRInfoCheckVM Model = null;
+    private ValidateForm vform { get; set; }
+    [Parameter]
+    public string id { get; set; }
+
+    private List<SelectedItem> AllDVRs = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllDVRs = await WtmBlazor.Api.CallItemsApi("/api/DVRInfoCheck/GetDVRs", placeholder: WtmBlazor.Localizer["Sys.PleaseSelect"]);
+
+        var rv = await WtmBlazor.Api.CallAPI<DVRInfoCheckVM>($"/api/DVRInfoCheck/{id}");
+        Model = rv.Data;
+         await base.OnInitializedAsync();
+   }
+
+    private async Task Submit(EditContext context)
+    {
+        await PostsForm(vform, $"/api/DVRInfoCheck/edit", (s) => "Sys.OprationSuccess", method: HttpMethodEnum.PUT);
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}

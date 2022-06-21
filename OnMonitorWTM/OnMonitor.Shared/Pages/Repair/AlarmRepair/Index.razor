@@ -1,0 +1,165 @@
+﻿@page "/Repair/AlarmRepair"
+@using OnMonitor.ViewModel.Repair.AlarmRepairVMs;
+@inherits BasePage
+@attribute [ActionDescription("门磁维修", "OnMonitor.Controllers,AlarmRepair")]
+
+<WTSearchPanel OnSearch="@DoSearch">
+    <ValidateForm Model="@SearchModel">
+        <Row ItemsPerRow="ItemsPerRow.Three" RowType="RowType.Inline">
+
+            <Select @bind-Value="@SearchModel.AlarmId" Items="@AllAlarms" ShowSearch=true PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <WTDateRange @bind-Value="@SearchModel.TestTime"  />
+            <Select @bind-Value="@SearchModel.RepairState"  PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <Select @bind-Value="@SearchModel.AlarmAnomalyState"  PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <BootstrapInput @bind-Value="@SearchModel.Registrar"  />
+            <WTDateRange @bind-Value="@SearchModel.RepairedTime"  />
+        </Row>
+    </ValidateForm>
+</WTSearchPanel>
+
+
+
+<Table @ref="dataTable" TItem="AlarmRepair_View" OnQueryAsync="OnSearch" IsPagination="true" IsStriped="true" IsBordered="true" ShowRefresh="false"
+       ShowToolbar="true" IsMultipleSelect="true" ShowExtendButtons="true" ShowDefaultButtons="false" style="margin-top:10px;">
+    <TableColumns>
+
+        <TableColumn @bind-Field="@context.Alarm_ID_view"  />
+        <TableColumn @bind-Field="@context.TestTime" FormatString="yyyy-MM-dd HH: mm: ss" />
+        <TableColumn @bind-Field="@context.AnomalyTime" FormatString="yyyy-MM-dd HH: mm: ss" />
+        <TableColumn @bind-Field="@context.AlarmAnomalyState"  />
+        <TableColumn @bind-Field="@context.Registrar"  />
+        <TableColumn @bind-Field="@context.RepairState"  />
+        <TableColumn @bind-Field="@context.RepairedTime" FormatString="yyyy-MM-dd HH: mm: ss" />
+        <TableColumn @bind-Field="@context.Accendant"  />
+        <TableColumn @bind-Field="@context.RepairDetails"  />
+        <TableColumn @bind-Field="@context.RepairFirm"  />
+        <TableColumn @bind-Field="@context.Supervisor"  />
+    </TableColumns>
+    <TableToolbarTemplate>
+        @if (IsAccessable("/api/AlarmRepair/Add"))
+        {
+            <TableToolbarButton TItem="AlarmRepair_View" Color="Color.Primary" Icon="fa fa-fw fa-plus" Text="@WtmBlazor.Localizer["Sys.Create"]" OnClickCallback="OnCreateClick" />
+        }
+        @if (IsAccessable("/api/AlarmRepair/BatchDelete"))
+        {
+            <TableToolbarPopconfirmButton TItem="AlarmRepair_View" Color="Color.Primary"
+                                          Icon="fa fa-fw fa-trash-o" Text="@WtmBlazor.Localizer["Sys.BatchDelete"]"
+                                          OnConfirm="@OnBatchDeleteClick" Content="@WtmBlazor.Localizer["Sys.BatchDeleteConfirm"]" CloseButtonText="@WtmBlazor.Localizer["Sys.Close"]"
+                                          ConfirmButtonText="@WtmBlazor.Localizer["Sys.BatchDelete"]" ConfirmButtonColor="Color.Danger" />
+        }
+        
+        @if (IsAccessable("/api/AlarmRepair/Import"))
+        {
+            <TableToolbarButton TItem="AlarmRepair_View" Color="Color.Primary" Icon="fa fa-fw fa-upload" Text="@WtmBlazor.Localizer["Sys.Import"]" OnClickCallback="@OnImportClick" />
+        }
+        @if (IsAccessable("/api/AlarmRepair/ExportExcel"))
+        {
+            <TableToolbarButton TItem="AlarmRepair_View" Color="Color.Primary" Icon="fa fa-fw fa-download" Text="@WtmBlazor.Localizer["Sys.Export"]" OnClickCallback="@OnExportClick" IsAsync="true" />
+        }
+    </TableToolbarTemplate>
+    <RowButtonTemplate>
+        <div style="padding-right:10px;">
+            @if (IsAccessable("/api/AlarmRepair/Edit"))
+            {
+                <TableCellButton Size="Size.ExtraSmall" Color="Color.Success" Icon="fa fa-edit" Text="@WtmBlazor.Localizer["Sys.Edit"]" OnClick="() => OnEditClick(context)" />
+            }
+            @if (IsAccessable("/api/AlarmRepair/{id}"))
+            {
+                <TableCellButton Size="Size.ExtraSmall" Color="Color.Info" Icon="fa fa-info" Text="@WtmBlazor.Localizer["Sys.Details"]" OnClick="()=>OnDetailsClick(context)" />
+            }
+            @if (IsAccessable("/api/AlarmRepair/BatchDelete"))
+            {
+                <PopConfirmButton Icon="fa fa-trash-o" Text="@WtmBlazor.Localizer["Sys.Delete"]" OnConfirm="() => OnDeleteClick(context)" Color="Color.Danger" Size="Size.ExtraSmall"
+                                  Content="@WtmBlazor.Localizer["Sys.DeleteConfirm"]" CloseButtonText="@WtmBlazor.Localizer["Sys.Close"]" ConfirmButtonText="@WtmBlazor.Localizer["Sys.Delete"]" ConfirmButtonColor="Color.Danger" />
+            }
+        </div>
+    </RowButtonTemplate>
+</Table>
+
+@code{
+
+    private AlarmRepairSearcher SearchModel = new AlarmRepairSearcher();
+    private Table<AlarmRepair_View> dataTable;
+
+    private List<SelectedItem> AllAlarms = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllAlarms = await WtmBlazor.Api.CallItemsApi("/api/AlarmRepair/GetAlarms", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task<QueryData<AlarmRepair_View>> OnSearch(QueryPageOptions opts)
+    {
+        return await StartSearch<AlarmRepair_View>("/api/AlarmRepair/Search", SearchModel, opts);
+    }
+
+    private void DoSearch()
+    {
+        dataTable.QueryAsync();
+    }
+
+    private async Task OnCreateClick(IEnumerable<AlarmRepair_View> items)
+    {
+        if (await OpenDialog<Create>(WtmBlazor.Localizer["Sys.Create"]) == DialogResult.Yes)
+        {
+            await dataTable.QueryAsync();
+        }
+    }
+
+    private async Task OnEditClick(AlarmRepair_View item)
+    {
+        if (await OpenDialog<Edit>(WtmBlazor.Localizer["Sys.Edit"], x => x.id == item.ID.ToString()) == DialogResult.Yes)
+        {
+            await dataTable.QueryAsync();
+        }
+    }
+
+    private async Task OnDetailsClick(AlarmRepair_View item)
+    {
+        await OpenDialog<Details>(WtmBlazor.Localizer["Sys.Details"], x => x.id == item.ID.ToString());
+    }
+
+    private async Task OnBatchDeleteClick()
+    {
+        if (dataTable.SelectedRows?.Any() == true)
+        {
+            await PostsData(dataTable.SelectedRows.Select(x => x.ID).ToList(), $"/api/AlarmRepair/batchdelete", (s) => WtmBlazor.Localizer["Sys.BatchDeleteSuccess", s]);
+            await dataTable.QueryAsync();
+        }
+        else
+        {
+            await WtmBlazor.Toast.Information(WtmBlazor.Localizer["Sys.Info"], WtmBlazor.Localizer["Sys.SelectOneRowMin"]);
+        }
+    }
+
+    private async Task OnDeleteClick(AlarmRepair_View item)
+    {
+        await PostsData(new List<string> { item.ID.ToString() }, $"/api/AlarmRepair/batchdelete", (s) => "Sys.OprationSuccess");
+        await dataTable.QueryAsync();
+    }
+
+
+    private async Task OnExportClick(IEnumerable<AlarmRepair_View> items)
+    {
+        if (dataTable.SelectedRows?.Any() == true)
+        {
+            await Download("/api/AlarmRepair/ExportExcelByIds", dataTable.SelectedRows.Select(x => x.ID.ToString()).ToList());
+        }
+        else
+        {
+            await Download("/api/AlarmRepair/ExportExcel", SearchModel);
+        }
+    }
+    private async Task OnImportClick(IEnumerable<AlarmRepair_View> items)
+    {
+        if (await OpenDialog<Import>(WtmBlazor.Localizer["Sys.Import"]) == DialogResult.Yes)
+        {
+            await dataTable.QueryAsync();
+        }
+    }
+
+}

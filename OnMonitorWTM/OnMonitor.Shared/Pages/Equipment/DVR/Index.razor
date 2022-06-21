@@ -1,0 +1,168 @@
+﻿@page "/Equipment/DVR"
+@using OnMonitor.ViewModel.Equipment.DVRVMs;
+@inherits BasePage
+@attribute [ActionDescription("存储设备", "OnMonitor.Controllers,DVR")]
+
+<WTSearchPanel OnSearch="@DoSearch">
+    <ValidateForm Model="@SearchModel">
+        <Row ItemsPerRow="ItemsPerRow.Three" RowType="RowType.Inline">
+
+            <Select @bind-Value="@SearchModel.monitorRoomId" Items="@AllMonitorRooms" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <BootstrapInput @bind-Value="@SearchModel.DVR_ID"  />
+            <BootstrapInput @bind-Value="@SearchModel.DVR_IP"  />
+            <BootstrapInput @bind-Value="@SearchModel.department"  />
+        </Row>
+    </ValidateForm>
+</WTSearchPanel>
+
+
+
+<Table @ref="dataTable" TItem="DVR_View" OnQueryAsync="OnSearch" IsPagination="true" IsStriped="true" IsBordered="true" ShowRefresh="false"
+       ShowToolbar="true" IsMultipleSelect="true" ShowExtendButtons="true" ShowDefaultButtons="false" style="margin-top:10px;">
+    <TableColumns>
+
+        <TableColumn @bind-Field="@context.RoomLocation_view"  />
+        <TableColumn @bind-Field="@context.DVR_ID"  />
+        <TableColumn @bind-Field="@context.Home_server"  />
+        <TableColumn @bind-Field="@context.Hard_drive"  />
+        <TableColumn @bind-Field="@context.DVR_IP"  />
+        @*<TableColumn @bind-Field="@context.DVR_port"  />
+        <TableColumn @bind-Field="@context.DVR_usre"  />
+        <TableColumn @bind-Field="@context.DVR_possword"  />*@
+        <TableColumn @bind-Field="@context.install_time"  />
+        <TableColumn @bind-Field="@context.Manufacturer"  />
+        <TableColumn @bind-Field="@context.DVR_type"  />
+        <TableColumn @bind-Field="@context.DVR_SN"  />
+        <TableColumn @bind-Field="@context.DVR_Channel"  />
+        <TableColumn @bind-Field="@context.department"  />
+        <TableColumn @bind-Field="@context.Cost_code"  />
+        <TableColumn @bind-Field="@context.Remark"  />
+    </TableColumns>
+    <TableToolbarTemplate>
+        @if (IsAccessable("/api/DVR/Add"))
+        {
+            <TableToolbarButton TItem="DVR_View" Color="Color.Primary" Icon="fa fa-fw fa-plus" Text="@WtmBlazor.Localizer["Sys.Create"]" OnClickCallback="OnCreateClick" />
+        }
+        @if (IsAccessable("/api/DVR/BatchDelete"))
+        {
+            <TableToolbarPopconfirmButton TItem="DVR_View" Color="Color.Primary"
+                                          Icon="fa fa-fw fa-trash-o" Text="@WtmBlazor.Localizer["Sys.BatchDelete"]"
+                                          OnConfirm="@OnBatchDeleteClick" Content="@WtmBlazor.Localizer["Sys.BatchDeleteConfirm"]" CloseButtonText="@WtmBlazor.Localizer["Sys.Close"]"
+                                          ConfirmButtonText="@WtmBlazor.Localizer["Sys.BatchDelete"]" ConfirmButtonColor="Color.Danger" />
+        }
+        
+        @if (IsAccessable("/api/DVR/Import"))
+        {
+            <TableToolbarButton TItem="DVR_View" Color="Color.Primary" Icon="fa fa-fw fa-upload" Text="@WtmBlazor.Localizer["Sys.Import"]" OnClickCallback="@OnImportClick" />
+        }
+        @if (IsAccessable("/api/DVR/ExportExcel"))
+        {
+            <TableToolbarButton TItem="DVR_View" Color="Color.Primary" Icon="fa fa-fw fa-download" Text="@WtmBlazor.Localizer["Sys.Export"]" OnClickCallback="@OnExportClick" IsAsync="true" />
+        }
+    </TableToolbarTemplate>
+    <RowButtonTemplate>
+        <div style="padding-right:10px;">
+            @if (IsAccessable("/api/DVR/Edit"))
+            {
+                <TableCellButton Size="Size.ExtraSmall" Color="Color.Success" Icon="fa fa-edit" Text="@WtmBlazor.Localizer["Sys.Edit"]" OnClick="() => OnEditClick(context)" />
+            }
+            @if (IsAccessable("/api/DVR/{id}"))
+            {
+                <TableCellButton Size="Size.ExtraSmall" Color="Color.Info" Icon="fa fa-info" Text="@WtmBlazor.Localizer["Sys.Details"]" OnClick="()=>OnDetailsClick(context)" />
+            }
+            @if (IsAccessable("/api/DVR/BatchDelete"))
+            {
+                <PopConfirmButton Icon="fa fa-trash-o" Text="@WtmBlazor.Localizer["Sys.Delete"]" OnConfirm="() => OnDeleteClick(context)" Color="Color.Danger" Size="Size.ExtraSmall"
+                                  Content="@WtmBlazor.Localizer["Sys.DeleteConfirm"]" CloseButtonText="@WtmBlazor.Localizer["Sys.Close"]" ConfirmButtonText="@WtmBlazor.Localizer["Sys.Delete"]" ConfirmButtonColor="Color.Danger" />
+            }
+        </div>
+    </RowButtonTemplate>
+</Table>
+
+@code{
+
+    private DVRSearcher SearchModel = new DVRSearcher();
+    private Table<DVR_View> dataTable;
+
+    private List<SelectedItem> AllMonitorRooms = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllMonitorRooms = await WtmBlazor.Api.CallItemsApi("/api/DVR/GetMonitorRooms", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task<QueryData<DVR_View>> OnSearch(QueryPageOptions opts)
+    {
+        return await StartSearch<DVR_View>("/api/DVR/Search", SearchModel, opts);
+    }
+
+    private void DoSearch()
+    {
+        dataTable.QueryAsync();
+    }
+
+    private async Task OnCreateClick(IEnumerable<DVR_View> items)
+    {
+        if (await OpenDialog<Create>(WtmBlazor.Localizer["Sys.Create"]) == DialogResult.Yes)
+        {
+            await dataTable.QueryAsync();
+        }
+    }
+
+    private async Task OnEditClick(DVR_View item)
+    {
+        if (await OpenDialog<Edit>(WtmBlazor.Localizer["Sys.Edit"], x => x.id == item.ID.ToString()) == DialogResult.Yes)
+        {
+            await dataTable.QueryAsync();
+        }
+    }
+
+    private async Task OnDetailsClick(DVR_View item)
+    {
+         await OpenDialog<DVROperation.DVRInfo>($"主机号:{item.DVR_ID}", x => x.DVRId== item.DVR_ID,Size.ExtraLarge);
+    }
+
+    private async Task OnBatchDeleteClick()
+    {
+        if (dataTable.SelectedRows?.Any() == true)
+        {
+            await PostsData(dataTable.SelectedRows.Select(x => x.ID).ToList(), $"/api/DVR/batchdelete", (s) => WtmBlazor.Localizer["Sys.BatchDeleteSuccess", s]);
+            await dataTable.QueryAsync();
+        }
+        else
+        {
+            await WtmBlazor.Toast.Information(WtmBlazor.Localizer["Sys.Info"], WtmBlazor.Localizer["Sys.SelectOneRowMin"]);
+        }
+    }
+
+    private async Task OnDeleteClick(DVR_View item)
+    {
+        await PostsData(new List<string> { item.ID.ToString() }, $"/api/DVR/batchdelete", (s) => "Sys.OprationSuccess");
+        await dataTable.QueryAsync();
+    }
+
+
+    private async Task OnExportClick(IEnumerable<DVR_View> items)
+    {
+        if (dataTable.SelectedRows?.Any() == true)
+        {
+            await Download("/api/DVR/ExportExcelByIds", dataTable.SelectedRows.Select(x => x.ID.ToString()).ToList());
+        }
+        else
+        {
+            await Download("/api/DVR/ExportExcel", SearchModel);
+        }
+    }
+    private async Task OnImportClick(IEnumerable<DVR_View> items)
+    {
+        if (await OpenDialog<Import>(WtmBlazor.Localizer["Sys.Import"]) == DialogResult.Yes)
+        {
+            await dataTable.QueryAsync();
+        }
+    }
+
+}

@@ -1,0 +1,179 @@
+﻿@page "/Equipment/Camera"
+@using OnMonitor.ViewModel.Equipment.CameraVMs;
+@inherits BasePage
+@attribute [ActionDescription("镜头管理", "OnMonitor.Controllers,Camera")]
+
+<WTSearchPanel OnSearch="@DoSearch">
+    <ValidateForm Model="@SearchModel">
+        <Row ItemsPerRow="ItemsPerRow.Three" RowType="RowType.Inline">
+             <Select @bind-Value="@SearchModel.monitorRoomId"ShowSearch=true Items="@AllMonitorRooms" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <Select @bind-Value="@SearchModel.DVRId" Items="@AllDVRs" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <BootstrapInput @bind-Value="@SearchModel.Camera_ID"  />
+            <BootstrapInput @bind-Value="@SearchModel.Build"  />
+            <BootstrapInput @bind-Value="@SearchModel.floor"  />
+            <BootstrapInput @bind-Value="@SearchModel.Direction"  />
+            <BootstrapInput @bind-Value="@SearchModel.Location"  />
+            <Select @bind-Value="@SearchModel.DepartmentId" Items="@AllDepartments" PlaceHolder="@WtmBlazor.Localizer["Sys.All"]"/>
+            <BootstrapInput @bind-Value="@SearchModel.manufacturer"  />
+        </Row>
+    </ValidateForm>
+</WTSearchPanel>
+
+
+
+<Table @ref="dataTable" TItem="Camera_View" OnQueryAsync="OnSearch" IsPagination="true" IsStriped="true" IsBordered="true" ShowRefresh="false"
+       ShowToolbar="true" IsMultipleSelect="true" ShowExtendButtons="true" ShowDefaultButtons="false" style="margin-top:10px;">
+    <TableColumns>
+        <TableColumn @bind-Field="@context.MonitorRoom"  />
+        <TableColumn @bind-Field="@context.DVR_ID_view"  />
+        <TableColumn @bind-Field="@context.channel_ID"  />
+        <TableColumn @bind-Field="@context.Camera_ID"  />
+        <TableColumn @bind-Field="@context.Build"  />
+        <TableColumn @bind-Field="@context.floor"  />
+        <TableColumn @bind-Field="@context.Direction"  />
+        <TableColumn @bind-Field="@context.Location"  />
+        <TableColumn @bind-Field="@context.MonitorClassification"  />
+        <TableColumn @bind-Field="@context.CameraTpye"  />
+        <TableColumn @bind-Field="@context.Name_view"  />
+        <TableColumn @bind-Field="@context.install_time"  />
+        <TableColumn @bind-Field="@context.manufacturer"  />
+        <TableColumn @bind-Field="@context.category"  />
+        @*<TableColumn @bind-Field="@context.Camera_IP"  />
+        <TableColumn @bind-Field="@context.Camera_port"  />
+        <TableColumn @bind-Field="@context.Camera_usre"  />
+        <TableColumn @bind-Field="@context.DVR_possword"  />*@
+        <TableColumn @bind-Field="@context.Remark"  />
+    </TableColumns>
+    <TableToolbarTemplate>
+        @if (IsAccessable("/api/Camera/Add"))
+        {
+            <TableToolbarButton TItem="Camera_View" Color="Color.Primary" Icon="fa fa-fw fa-plus" Text="@WtmBlazor.Localizer["Sys.Create"]" OnClickCallback="OnCreateClick" />
+        }
+        @if (IsAccessable("/api/Camera/BatchDelete"))
+        {
+            <TableToolbarPopconfirmButton TItem="Camera_View" Color="Color.Primary"
+                                          Icon="fa fa-fw fa-trash-o" Text="@WtmBlazor.Localizer["Sys.BatchDelete"]"
+                                          OnConfirm="@OnBatchDeleteClick" Content="@WtmBlazor.Localizer["Sys.BatchDeleteConfirm"]" CloseButtonText="@WtmBlazor.Localizer["Sys.Close"]"
+                                          ConfirmButtonText="@WtmBlazor.Localizer["Sys.BatchDelete"]" ConfirmButtonColor="Color.Danger" />
+        }
+        
+        @if (IsAccessable("/api/Camera/Import"))
+        {
+            <TableToolbarButton TItem="Camera_View" Color="Color.Primary" Icon="fa fa-fw fa-upload" Text="@WtmBlazor.Localizer["Sys.Import"]" OnClickCallback="@OnImportClick" />
+        }
+        @if (IsAccessable("/api/Camera/ExportExcel"))
+        {
+            <TableToolbarButton TItem="Camera_View" Color="Color.Primary" Icon="fa fa-fw fa-download" Text="@WtmBlazor.Localizer["Sys.Export"]" OnClickCallback="@OnExportClick" IsAsync="true" />
+        }
+    </TableToolbarTemplate>
+    <RowButtonTemplate>
+        <div style="padding-right:10px;">
+            @if (IsAccessable("/api/Camera/Edit"))
+            {
+                <TableCellButton Size="Size.ExtraSmall" Color="Color.Success" Icon="fa fa-edit" Text="@WtmBlazor.Localizer["Sys.Edit"]" OnClick="() => OnEditClick(context)" />
+            }
+            @if (IsAccessable("/api/Camera/{id}"))
+            {
+                <TableCellButton Size="Size.ExtraSmall" Color="Color.Info" Icon="fa fa-info" Text="@WtmBlazor.Localizer["Sys.Details"]" OnClick="()=>OnDetailsClick(context)" />
+            }
+            @if (IsAccessable("/api/Camera/BatchDelete"))
+            {
+                <PopConfirmButton Icon="fa fa-trash-o" Text="@WtmBlazor.Localizer["Sys.Delete"]" OnConfirm="() => OnDeleteClick(context)" Color="Color.Danger" Size="Size.ExtraSmall"
+                                  Content="@WtmBlazor.Localizer["Sys.DeleteConfirm"]" CloseButtonText="@WtmBlazor.Localizer["Sys.Close"]" ConfirmButtonText="@WtmBlazor.Localizer["Sys.Delete"]" ConfirmButtonColor="Color.Danger" />
+            }
+        </div>
+    </RowButtonTemplate>
+</Table>
+
+@code{
+
+    private CameraSearcher SearchModel = new CameraSearcher();
+    private Table<Camera_View> dataTable;
+
+    private List<SelectedItem> AllDVRs = new List<SelectedItem>();
+
+    private List<SelectedItem> AllDepartments = new List<SelectedItem>();
+    private List<SelectedItem> AllMonitorRooms = new List<SelectedItem>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        AllMonitorRooms = await WtmBlazor.Api.CallItemsApi("/api/DVR/GetMonitorRooms", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        AllDVRs = await WtmBlazor.Api.CallItemsApi("/api/Camera/GetDVRs", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        AllDepartments = await WtmBlazor.Api.CallItemsApi("/api/Camera/GetDepartments", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        await base.OnInitializedAsync();
+    }
+
+    private async Task<QueryData<Camera_View>> OnSearch(QueryPageOptions opts)
+    {
+        return await StartSearch<Camera_View>("/api/Camera/Search", SearchModel, opts);
+    }
+
+    private void DoSearch()
+    {
+        dataTable.QueryAsync();
+    }
+
+    private async Task OnCreateClick(IEnumerable<Camera_View> items)
+    {
+        if (await OpenDialog<Create>(WtmBlazor.Localizer["Sys.Create"]) == DialogResult.Yes)
+        {
+            await dataTable.QueryAsync();
+        }
+    }
+
+    private async Task OnEditClick(Camera_View item)
+    {
+        if (await OpenDialog<Edit>(WtmBlazor.Localizer["Sys.Edit"], x => x.id == item.ID.ToString()) == DialogResult.Yes)
+        {
+            await dataTable.QueryAsync();
+        }
+    }
+
+    private async Task OnDetailsClick(Camera_View item)
+    {
+        await OpenDialog<Details>(WtmBlazor.Localizer["Sys.Details"], x => x.id == item.ID.ToString());
+    }
+
+    private async Task OnBatchDeleteClick()
+    {
+        if (dataTable.SelectedRows?.Any() == true)
+        {
+            await PostsData(dataTable.SelectedRows.Select(x => x.ID).ToList(), $"/api/Camera/batchdelete", (s) => WtmBlazor.Localizer["Sys.BatchDeleteSuccess", s]);
+            await dataTable.QueryAsync();
+        }
+        else
+        {
+            await WtmBlazor.Toast.Information(WtmBlazor.Localizer["Sys.Info"], WtmBlazor.Localizer["Sys.SelectOneRowMin"]);
+        }
+    }
+
+    private async Task OnDeleteClick(Camera_View item)
+    {
+        await PostsData(new List<string> { item.ID.ToString() }, $"/api/Camera/batchdelete", (s) => "Sys.OprationSuccess");
+        await dataTable.QueryAsync();
+    }
+
+
+    private async Task OnExportClick(IEnumerable<Camera_View> items)
+    {
+        if (dataTable.SelectedRows?.Any() == true)
+        {
+            await Download("/api/Camera/ExportExcelByIds", dataTable.SelectedRows.Select(x => x.ID.ToString()).ToList());
+        }
+        else
+        {
+            await Download("/api/Camera/ExportExcel", SearchModel);
+        }
+    }
+    private async Task OnImportClick(IEnumerable<Camera_View> items)
+    {
+        if (await OpenDialog<Import>(WtmBlazor.Localizer["Sys.Import"]) == DialogResult.Yes)
+        {
+            await dataTable.QueryAsync();
+        }
+    }
+
+}

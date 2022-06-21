@@ -1,0 +1,55 @@
+﻿@page "/Equipment/AlarmHost/Edit/{id}"
+@using OnMonitor.ViewModel.Equipment.AlarmHostVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" OnValidSubmit="@Submit">
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.Normal">
+
+            <Select @bind-Value="@Model.Entity.MonitorRoomId" Items="@AllMonitorRooms" PlaceHolder="@WtmBlazor.Localizer["Sys.PleaseSelect"]"/>
+            <BootstrapInput @bind-Value="@Model.Entity.AlarmHost_ID"  />
+            <BootstrapInput @bind-Value="@Model.Entity.User"  />
+            <BootstrapInput @bind-Value="@Model.Entity.Password"  />
+            <BootstrapInput @bind-Value="@Model.Entity.AlarmHostType"  />
+            <BootstrapInput @bind-Value="@Model.Entity.AlarmHostIP"  />
+            <BootstrapInputNumber @bind-Value="@Model.Entity.AlarmChannelCount"  />
+            <BootstrapInput @bind-Value="@Model.Entity.install_time"  />
+            <BootstrapInput @bind-Value="@Model.Entity.category"  />
+            <BootstrapInput @bind-Value="@Model.Entity.Remark"  />
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+        <Button Color="Color.Primary" ButtonType="ButtonType.Submit" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Edit"]" IsAsync="true" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private AlarmHostVM Model = null;
+    private ValidateForm vform { get; set; }
+    [Parameter]
+    public string id { get; set; }
+
+    private List<SelectedItem> AllMonitorRooms = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllMonitorRooms = await WtmBlazor.Api.CallItemsApi("/api/AlarmHost/GetMonitorRooms", placeholder: WtmBlazor.Localizer["Sys.PleaseSelect"]);
+
+        var rv = await WtmBlazor.Api.CallAPI<AlarmHostVM>($"/api/AlarmHost/{id}");
+        Model = rv.Data;
+         await base.OnInitializedAsync();
+   }
+
+    private async Task Submit(EditContext context)
+    {
+        await PostsForm(vform, $"/api/AlarmHost/edit", (s) => "Sys.OprationSuccess", method: HttpMethodEnum.PUT);
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}

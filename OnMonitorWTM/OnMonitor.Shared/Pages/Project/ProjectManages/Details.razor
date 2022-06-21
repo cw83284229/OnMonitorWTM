@@ -1,0 +1,62 @@
+﻿@page "/Project/ProjectManages/Details/{id}"
+@using OnMonitor.ViewModel.Project.ProjectManagesVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" >
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.Normal">
+
+            <Display @bind-Value="@Model.Entity.ProjectManageType"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.ProjectName"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.ProjectOrder"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.StartWorkDate"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.CompleteDate"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.AcceptanceData"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.ManufacturerName"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.ProjectSpecifications"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.Build"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.Floor"   ShowLabel="true"/>
+                @if (Model.Entity.ExcelDataId!=null){
+                    <div>
+                          <label class="control-label is-display">ExcelData</label>
+                          <div><Button Size="Size.Small" Text="@WtmBlazor.Localizer["Sys.Download"]" OnClick="@(async x => await Download($"/api/_file/DownloadFile/{Model.Entity.ExcelDataId}",null, HttpMethodEnum.GET))" /></div>
+                    </div>
+                }
+
+                @if (Model.Entity.LayoutInfoId!=null){
+                    <div>
+                          <label class="control-label is-display">LayoutInfo</label>
+                          <div><Button Size="Size.Small" Text="@WtmBlazor.Localizer["Sys.Download"]" OnClick="@(async x => await Download($"/api/_file/DownloadFile/{Model.Entity.LayoutInfoId}",null, HttpMethodEnum.GET))" /></div>
+                    </div>
+                }
+
+            <Display @bind-Value="@Model.Entity.PowerInfo"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.AlarmInfo"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.AcceptanceResult"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.Remark"   ShowLabel="true"/>
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private ProjectManagesVM Model = null;
+    private ValidateForm vform { get; set; }
+    [Parameter]
+    public string id { get; set; }
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        var rv = await WtmBlazor.Api.CallAPI<ProjectManagesVM>($"/api/ProjectManages/{id}");
+        Model = rv.Data;
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}

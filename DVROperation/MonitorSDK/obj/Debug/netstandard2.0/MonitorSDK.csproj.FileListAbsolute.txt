@@ -1,0 +1,9 @@
+D:\GithubCode\DVROperation\DVROperation\MonitorSDK\bin\Debug\netstandard2.0\MonitorSDK.deps.json
+D:\GithubCode\DVROperation\DVROperation\MonitorSDK\bin\Debug\netstandard2.0\MonitorSDK.dll
+D:\GithubCode\DVROperation\DVROperation\MonitorSDK\bin\Debug\netstandard2.0\MonitorSDK.pdb
+D:\GithubCode\DVROperation\DVROperation\MonitorSDK\obj\Debug\netstandard2.0\MonitorSDK.csproj.AssemblyReference.cache
+D:\GithubCode\DVROperation\DVROperation\MonitorSDK\obj\Debug\netstandard2.0\MonitorSDK.AssemblyInfoInputs.cache
+D:\GithubCode\DVROperation\DVROperation\MonitorSDK\obj\Debug\netstandard2.0\MonitorSDK.AssemblyInfo.cs
+D:\GithubCode\DVROperation\DVROperation\MonitorSDK\obj\Debug\netstandard2.0\MonitorSDK.csproj.CoreCompileInputs.cache
+D:\GithubCode\DVROperation\DVROperation\MonitorSDK\obj\Debug\netstandard2.0\MonitorSDK.dll
+D:\GithubCode\DVROperation\DVROperation\MonitorSDK\obj\Debug\netstandard2.0\MonitorSDK.pdb

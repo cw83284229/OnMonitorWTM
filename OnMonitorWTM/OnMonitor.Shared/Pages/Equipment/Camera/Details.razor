@@ -1,0 +1,60 @@
+﻿@page "/Equipment/Camera/Details/{id}"
+@using OnMonitor.ViewModel.Equipment.CameraVMs;
+@inherits BasePage
+
+<ValidateForm @ref="vform" Model="@Model" >
+    <Row ItemsPerRow="ItemsPerRow.Two" RowType="RowType.Normal">
+
+            <Display @bind-Value="@Model.Entity.DVRId" Lookup="@AllDVRs"  ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.channel_ID"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.Camera_ID"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.Build"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.floor"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.Direction"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.Location"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.MonitorClassification"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.CameraTpye"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.DepartmentId" Lookup="@AllDepartments"  ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.install_time"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.manufacturer"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.category"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.Camera_IP"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.Camera_port"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.Camera_usre"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.DVR_possword"   ShowLabel="true"/>
+            <Display @bind-Value="@Model.Entity.Remark"   ShowLabel="true"/>
+    </Row>
+    <div class="modal-footer table-modal-footer">
+        <Button Color="Color.Primary" Icon="fa fa-save" Text="@WtmBlazor.Localizer["Sys.Close"]" OnClick="OnClose" />
+    </div>
+</ValidateForm>
+
+@code {
+
+    private CameraVM Model = null;
+    private ValidateForm vform { get; set; }
+    [Parameter]
+    public string id { get; set; }
+
+    private List<SelectedItem> AllDVRs = new List<SelectedItem>();
+
+    private List<SelectedItem> AllDepartments = new List<SelectedItem>();
+
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        AllDVRs = await WtmBlazor.Api.CallItemsApi("/api/Camera/GetDVRs", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        AllDepartments = await WtmBlazor.Api.CallItemsApi("/api/Camera/GetDepartments", placeholder: WtmBlazor.Localizer["Sys.All"]);
+
+        var rv = await WtmBlazor.Api.CallAPI<CameraVM>($"/api/Camera/{id}");
+        Model = rv.Data;
+    }
+
+    public void OnClose()
+    {
+        CloseDialog();
+    }
+
+}
